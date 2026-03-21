@@ -715,8 +715,8 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
                   type="button"
                   onClick={() => setFormData({ ...formData, service: service.id })}
                   className={`p-6 rounded-2xl border text-left transition-all card-shadow ${formData.service === service.id
-                      ? 'border-ink bg-ink text-paper'
-                      : 'border-ink/5 bg-white hover:border-ink/20'
+                    ? 'border-ink bg-ink text-paper'
+                    : 'border-ink/5 bg-white hover:border-ink/20'
                     }`}
                 >
                   <div className="flex justify-between items-start mb-4">
@@ -1082,4 +1082,4 @@ export default function App() {
       <Footer />
     </div>
   );
-}
+} 
