@@ -1,9 +1,53 @@
+The blank screen is happening because your `src/App.tsx` file is still physically cut off in the middle of a line, causing a fatal syntax error that crashes the entire React app.Your `src/index.css` also accidentally duplicated the code instead of replacing it.
+
+Here is the exact way to fix this.Please use the ** "Copy code" ** button on the top right of these blocks to ensure you get every single line down to the very bottom!
+
+### 1. Fix`src/index.css`
+Delete everything in the file and paste this exactly(no duplicates):
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  /* Elevated Feminine Palette */
+  --color-paper: #FDFBF7;
+  --color-ink: #4A403A;
+  --color-accent: #C8A9A1;
+  --color-soft: #F9F3F1;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+}
+
+.glass {
+  @apply bg-white/40 backdrop-blur-md border border-black/5;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-ink to-accent;
+}
+
+.card-shadow {
+  @apply shadow-[0_4px_30px_rgba(74, 64, 58, 0.06)];
+}
+```
+
+### 2. Fix`src/App.tsx`(Complete File)
+Delete ** everything ** in `src/App.tsx` and paste this full version.Make sure the very last line in your file is`}`.
+
+```tsx
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import {
-  Camera,
-  ArrowRight,
-  Check,
+import { 
+  Camera, 
+  ArrowRight, 
+  Check, 
   Star,
   Sparkles,
   Instagram,
@@ -34,7 +78,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results'
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-10 md:px-16 bg-paper/90 backdrop-blur-sm">
-      <button
+      <button 
         onClick={() => onNavigate('hero')}
         className="flex items-center gap-3 hover:opacity-70 transition-opacity"
       >
@@ -47,7 +91,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results'
         <button onClick={() => handleScroll('portfolio')} className="hover:text-ink transition-colors">Portfolio</button>
         <button onClick={() => handleScroll('experience')} className="hover:text-ink transition-colors">Experience</button>
         <button onClick={() => handleScroll('pricing')} className="hover:text-ink transition-colors">Pricing</button>
-        <button
+        <button 
           onClick={() => onNavigate('quiz')}
           className="px-10 py-4 bg-ink text-paper rounded-full hover:scale-105 transition-all shadow-lg shadow-ink/10"
         >
@@ -67,16 +111,16 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
     </div>
 
     <div className="absolute inset-0 z-0">
-      <img
-        src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000"
-        alt="Photography background"
+      <img 
+        src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000" 
+        alt="Photography background" 
         className="w-full h-full object-cover opacity-[0.05] scale-105"
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-paper via-transparent to-paper" />
     </div>
 
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -90,7 +134,7 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
       <p className="text-xl md:text-2xl text-ink/50 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
         Elevated photography for the modern visionary.
       </p>
-      <button
+      <button 
         onClick={onStartQuiz}
         className="group relative px-12 py-6 bg-ink text-paper rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-xl shadow-ink/10"
       >
@@ -117,7 +161,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
   const nextStep = (updates: Partial<QuizState>) => {
     const newState = { ...state, ...updates, step: state.step + 1 };
     setState(newState);
-
+    
     const totalSteps = newState.path === 'custom' ? 2 : 4;
     if (newState.step > totalSteps) {
       onComplete(newState);
@@ -139,9 +183,9 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
 
       <div className="max-w-5xl w-full relative z-10">
         <div className="mb-16 flex items-center justify-between">
-          <button
+          <button 
             onClick={prevStep}
-            className={`flex items-center gap-4 px-8 py-4 rounded-full border border-ink/10 text-[10px] uppercase tracking-widest font-bold text-ink/60 hover:text-ink hover:bg-soft transition-all ${state.step === 1 ? 'invisible' : ''}`}
+            className={`flex items - center gap - 4 px - 8 py - 4 rounded - full border border - ink / 10 text - [10px] uppercase tracking - widest font - bold text - ink / 60 hover: text - ink hover: bg - soft transition - all ${ state.step === 1 ? 'invisible' : '' } `}
           >
             <ArrowRight className="w-4 h-4 rotate-180" />
             <span>Back</span>
@@ -153,7 +197,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
 
         <AnimatePresence mode="wait">
           {state.step === 1 && (
-            <motion.div
+            <motion.div 
               key="step1"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -164,15 +208,15 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                 <h2 className="font-serif text-6xl md:text-8xl text-ink leading-[0.9]">What are we <br /><span className="italic font-light">creating today?</span></h2>
                 <p className="text-[11px] uppercase tracking-[0.4em] text-accent font-bold">Select your path to begin</p>
               </div>
-
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                 <button
                   onClick={() => nextStep({ path: 'branding' })}
                   className="group relative aspect-[3/4] rounded-[40px] overflow-hidden border border-ink/5 card-shadow"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
-                    alt="Branding"
+                  <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" 
+                    alt="Branding" 
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                   />
@@ -188,9 +232,9 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   onClick={() => nextStep({ path: 'portrait' })}
                   className="group relative aspect-[3/4] rounded-[40px] overflow-hidden border border-ink/5 card-shadow"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=800"
-                    alt="Portrait"
+                  <img 
+                    src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=800" 
+                    alt="Portrait" 
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                   />
@@ -205,9 +249,8 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* BRANDING PATH QUIZ UPDATES */}
           {state.step === 2 && state.path === 'branding' && (
-            <motion.div
+            <motion.div 
               key="step2-branding"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -240,7 +283,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
           )}
 
           {state.step === 3 && state.path === 'branding' && (
-            <motion.div
+            <motion.div 
               key="step3-branding"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -273,7 +316,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
           )}
 
           {state.step === 4 && state.path === 'branding' && (
-            <motion.div
+            <motion.div 
               key="step4-branding"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -305,9 +348,8 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* PORTRAIT QUIZ */}
           {state.step === 2 && state.path === 'portrait' && (
-            <motion.div
+            <motion.div 
               key="step2-portrait"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -340,7 +382,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
           )}
 
           {state.step === 3 && state.path === 'portrait' && (
-            <motion.div
+            <motion.div 
               key="step3-portrait"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -373,7 +415,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
           )}
 
           {state.step === 4 && state.path === 'portrait' && (
-            <motion.div
+            <motion.div 
               key="step4-portrait"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -405,9 +447,8 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* CUSTOM PATH */}
           {state.step === 2 && state.path === 'custom' && (
-            <motion.div
+            <motion.div 
               key="step-custom"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -419,7 +460,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                 <p className="text-ink/60">What are you looking to create? Share as much or as little as you'd like.</p>
               </div>
               <div className="space-y-8">
-                <textarea
+                <textarea 
                   autoFocus
                   className="w-full bg-transparent border-b border-ink/20 py-4 text-xl font-serif italic focus:border-ink outline-none transition-colors resize-none text-ink"
                   rows={4}
@@ -446,7 +487,7 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
   const isAiry = quizState.lighting === 'airy';
   const isMoody = quizState.lighting === 'moody';
   const isCandid = quizState.poses === 'candid';
-
+  
   const brandingImages = [
     'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
     'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=400',
@@ -487,7 +528,7 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
           <Sparkles className="w-3 h-3" />
           <span>Style Profile Identified</span>
         </motion.div>
-
+        
         <h2 className="font-serif text-6xl md:text-[100px] mb-12 text-ink leading-[0.85] tracking-tight">
           {isBranding ? (
             <>The <span className="italic font-light">{isMoody ? 'Sophisticated' : 'Modern'}</span> <br />Visionary.</>
@@ -495,26 +536,26 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
             <>The <span className="italic font-light">{isCandid ? 'Natural' : 'Classic'}</span> <br />Storyteller.</>
           )}
         </h2>
-
+        
         <p className="text-xl md:text-2xl text-ink/60 font-light leading-relaxed mb-20 max-w-3xl mx-auto serif italic">
-          {isBranding
-            ? `Your brand needs to look as high-end as the service you provide. We'll capture your authority with ${isAiry ? 'warm, inviting' : 'sleek, editorial'} visuals that convert.`
+          {isBranding 
+            ? `Your brand needs to look as high - end as the service you provide.We'll capture your authority with ${isAiry ? 'warm, inviting' : 'sleek, editorial'} visuals that convert.`
             : `You want portraits that feel like you, not a posed mannequin. We'll focus on ${isCandid ? 'candid moments and movement' : 'timeless, intentional compositions'} to tell your story.`}
-        </p>
+        </p >
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 max-w-4xl mx-auto">
           {[
-            {
-              label: isBranding ? 'Brand Vibe' : 'Lighting',
-              value: isBranding ? (isAiry ? 'Warm & Approachable' : 'Sleek & Editorial') : (isAiry ? 'Luminous & Soft' : 'Dramatic & Rich')
+            { 
+              label: isBranding ? 'Brand Vibe' : 'Lighting', 
+              value: isBranding ? (isAiry ? 'Warm & Approachable' : 'Sleek & Editorial') : (isAiry ? 'Luminous & Soft' : 'Dramatic & Rich') 
             },
-            {
-              label: isBranding ? 'Primary Focus' : 'Direction',
-              value: isBranding ? (isCandid ? 'Social Media & Daily' : 'Website & PR Assets') : (isCandid ? 'Guided Movement' : 'Editorial Posing')
+            { 
+              label: isBranding ? 'Primary Focus' : 'Direction', 
+              value: isBranding ? (isCandid ? 'Social Media & Daily' : 'Website & PR Assets') : (isCandid ? 'Guided Movement' : 'Editorial Posing') 
             },
-            {
-              label: isBranding ? 'Setting' : 'Palette',
-              value: isBranding ? (quizState.palette === 'airy' ? 'Bright Studio Setup' : 'In-Action Workspace') : (quizState.palette === 'moody' ? 'Deep Earth Tones' : 'Soft Neutrals')
+            { 
+              label: isBranding ? 'Setting' : 'Palette', 
+              value: isBranding ? (quizState.palette === 'airy' ? 'Bright Studio Setup' : 'In-Action Workspace') : (quizState.palette === 'moody' ? 'Deep Earth Tones' : 'Soft Neutrals') 
             }
           ].map((item, i) => (
             <div key={i} className="space-y-3 p-8 rounded-[32px] border border-ink/5 bg-soft/50">
@@ -523,14 +564,14 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
             </div>
           ))}
         </div>
-
-        <button
+        
+        <button 
           onClick={onBook}
           className="px-16 py-6 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.3em] text-[10px] hover:scale-105 transition-all shadow-xl shadow-ink/10"
         >
           Proceed to Booking
         </button>
-      </section>
+      </section >
 
       <section className="px-8 pb-48">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -547,12 +588,12 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
             </motion.div>
           ))}
         </div>
-
+        
         <div className="mt-40 text-center space-y-8">
           <div className="w-px h-24 bg-accent/30 mx-auto" />
           <p className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">The Ontario Factor</p>
           <p className="text-3xl md:text-4xl font-serif italic max-w-3xl mx-auto text-ink leading-relaxed">
-            {isBranding
+            {isBranding 
               ? "Available for on-location shoots at your GTA office or my partner studios in Liberty Village."
               : "Available for outdoor sessions in the Blue Mountains, Kawarthas, or urban shoots in downtown Toronto."}
           </p>
@@ -585,8 +626,8 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
                 <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Private digital gallery</li>
                 {isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> 3 Social Media Motion clips</li>}
               </ul>
-              <button
-                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')}
+              <button 
+                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')} 
                 className="w-full py-6 rounded-full border border-ink/20 hover:bg-ink hover:text-paper transition-all uppercase tracking-[0.3em] text-[10px] font-bold text-ink"
               >
                 Select Collection
@@ -610,8 +651,8 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
                 {isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> 8 Social Media Motion clips</li>}
                 {!isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Hand-crafted linen photo book</li>}
               </ul>
-              <button
-                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')}
+              <button 
+                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')} 
                 className="w-full py-6 rounded-full bg-paper text-ink hover:opacity-90 transition-all uppercase tracking-[0.3em] text-[10px] font-bold"
               >
                 Select Collection
@@ -620,7 +661,7 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
           </div>
         </div>
       </section>
-    </div>
+    </div >
   );
 };
 
@@ -907,4 +948,177 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
 
     <section id="portfolio" className="py-48 px-8 bg-soft">
       <div className="max-w-7xl mx-auto space-y-32">
-        <div className="text-
+        <div className="text-center space-y-6">
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">Portfolio Highlights</span>
+          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Featured <span className="italic font-light">Work.</span></h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200" alt="Portrait" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
+              <div className="text-left space-y-4">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Portrait Path</p>
+                <h3 className="font-serif text-4xl italic text-paper">The Soulful Storyteller</h3>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Branding" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
+              <div className="text-left space-y-4">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Branding Path</p>
+                <h3 className="font-serif text-3xl italic text-paper">The Modern Visionary</h3>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=600" alt="Creative" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+          </div>
+          <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" alt="Landscape" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" className="py-48 px-8 bg-paper">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          {[
+            { step: '01', title: 'The Discovery', desc: 'We start with the quiz to align our visions and find the aesthetic that fits your unique story.' },
+            { step: '02', title: 'The Session', desc: 'A relaxed, guided experience on location in Ontario, focused on movement and authentic light.' },
+            { step: '03', title: 'The Legacy', desc: 'Receive a curated digital gallery and high-end motion clips designed to last a lifetime.' }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8 p-12 rounded-[40px] border border-ink/5 bg-soft/50"
+            >
+              <span className="font-serif text-6xl italic text-accent opacity-30">{item.step}</span>
+              <h3 className="text-2xl font-serif text-ink">{item.title}</h3>
+              <p className="text-ink/60 font-light leading-relaxed serif italic">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" className="py-48 bg-soft px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-32 space-y-6">
+          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Investment.</h2>
+          <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">Collections starting at $500</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+            <h3 className="font-serif text-4xl italic text-ink">Portrait Sessions</h3>
+            <p className="text-ink/60 font-light leading-relaxed serif italic">Capturing personal milestones, family legacies, and individual stories across Ontario.</p>
+            <p className="text-3xl font-serif text-ink">Starting at $500</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+          </div>
+          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+            <h3 className="font-serif text-4xl italic text-ink">Branding & Commercial</h3>
+            <p className="text-ink/60 font-light leading-relaxed serif italic">Elevating professional identities for modern visionaries and creative entrepreneurs.</p>
+            <p className="text-3xl font-serif text-ink">Starting at $950</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-48 px-8 bg-paper overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-32 items-center">
+          <div className="md:w-1/3 space-y-8">
+            <h2 className="font-serif text-7xl md:text-8xl italic text-ink leading-none">Client <br />Love.</h2>
+            <p className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold">Voices from across Ontario</p>
+          </div>
+          <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-16">
+            {[
+              { quote: "The branding session completely changed how I show up online. I finally look as professional as my business feels.", author: "Sarah J., Entrepreneur (Toronto)" },
+              { quote: "I've never felt comfortable in front of a camera until now. These photos feel like the real me.", author: "Michael R., Artist (Hamilton)" }
+            ].map((t, i) => (
+              <div key={i} className="space-y-6">
+                <p className="text-2xl font-serif italic leading-relaxed text-ink">"{t.quote}"</p>
+                <div className="w-8 h-px bg-accent/40" />
+                <p className="text-[9px] uppercase tracking-[0.3em] text-accent font-bold">— {t.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-64 px-8 text-center bg-soft relative">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,var(--color-accent)_0%,transparent_70%)]" />
+      </div>
+      <div className="max-w-4xl mx-auto space-y-16 relative z-10">
+        <h2 className="font-serif text-7xl md:text-[120px] text-ink leading-[0.85] tracking-tight">Ready to tell <br /><span className="italic font-light">your</span> story?</h2>
+        <button
+          onClick={onStartQuiz}
+          className="px-20 py-8 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.4em] text-[10px] hover:scale-105 transition-all shadow-2xl shadow-ink/20"
+        >
+          Begin the Discovery
+        </button>
+      </div>
+    </section>
+  </div>
+);
+
+export default function App() {
+  const [view, setView] = useState<'hero' | 'quiz' | 'results' | 'booking'>('hero');
+  const [quizState, setQuizState] = useState<QuizState | null>(null);
+  const [selectedService, setSelectedService] = useState<string>('');
+
+  const handleStartQuiz = () => setView('quiz');
+
+  const handleQuizComplete = (state: QuizState) => {
+    setQuizState(state);
+    setView('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBook = () => {
+    setView('booking');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="selection:bg-accent/20 selection:text-ink">
+      <Navbar onNavigate={(v) => {
+        setView(v);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }} />
+
+      <main>
+        {view === 'hero' && <Home onStartQuiz={handleStartQuiz} />}
+
+        {view === 'quiz' && <Quiz onComplete={handleQuizComplete} />}
+
+        {view === 'results' && quizState && (
+          <Results
+            quizState={quizState}
+            onBook={handleBook}
+            onSelectPackage={(pkg) => setSelectedService(pkg)}
+          />
+        )}
+
+        {view === 'booking' && (
+          <InquiryForm
+            quizState={quizState}
+            onEditQuiz={() => setView('quiz')}
+            initialService={selectedService}
+          />
+        )}
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+```
