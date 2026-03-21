@@ -1,21 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Camera,
-  ChevronRight,
-  MapPin,
-  Instagram,
   ArrowRight,
   Check,
   Star,
   Sparkles,
-  Briefcase,
-  User,
-  Plus
+  Instagram,
+  Plus,
+  MapPin,
+  ChevronRight
 } from 'lucide-react';
 
 // --- Types ---
-
 type Path = 'branding' | 'portrait' | 'custom' | null;
 
 interface QuizState {
@@ -28,7 +25,6 @@ interface QuizState {
 }
 
 // --- Components ---
-
 const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results' | 'booking', sectionId?: string) => void }) => {
   const handleScroll = (id: string) => {
     onNavigate('hero');
@@ -39,7 +35,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results'
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-10 md:px-16 bg-paper/90 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-10 md:px-16 bg-paper/90 backdrop-blur-sm transition-all duration-300">
       <button
         onClick={() => onNavigate('hero')}
         className="flex items-center gap-3 hover:opacity-70 transition-opacity"
@@ -49,7 +45,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results'
         </div>
         <span className="font-serif text-2xl tracking-[0.2em] uppercase text-ink">Ontario Photo Co.</span>
       </button>
-      <div className="hidden md:flex items-center gap-12 text-[9px] uppercase tracking-[0.3em] font-bold text-ink/50">
+      <div className="hidden md:flex items-center gap-12 text-[9px] uppercase tracking-[0.3em] font-bold text-ink/60">
         <button onClick={() => handleScroll('portfolio')} className="hover:text-ink transition-colors">Portfolio</button>
         <button onClick={() => handleScroll('experience')} className="hover:text-ink transition-colors">Experience</button>
         <button onClick={() => handleScroll('pricing')} className="hover:text-ink transition-colors">Pricing</button>
@@ -93,14 +89,15 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         Your Story, <br />
         <span className="italic font-light">Expertly Told.</span>
       </h1>
-      <p className="text-xl md:text-2xl text-ink/50 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
+      <p className="text-xl md:text-2xl text-ink/60 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
         Elevated photography for the modern visionary.
       </p>
       <button
         onClick={onStartQuiz}
-        className="group relative px-12 py-6 bg-ink text-paper rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-xl shadow-ink/10"
+        className="group relative px-12 py-6 bg-ink text-paper rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-xl shadow-ink/10 flex items-center justify-center mx-auto gap-4"
       >
         <span className="relative z-10 uppercase tracking-[0.3em] text-[10px]">Begin Your Discovery</span>
+        <ArrowRight className="w-4 h-4" />
       </button>
     </motion.div>
 
@@ -211,7 +208,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* BRANDING PATH QUIZ UPDATES */}
+          {/* BRANDING PATH QUIZ */}
           {state.step === 2 && state.path === 'branding' && (
             <motion.div
               key="step2-branding"
@@ -508,7 +505,6 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
             : `You want portraits that feel like you, not a posed mannequin. We'll focus on ${isCandid ? 'candid moments and movement' : 'timeless, intentional compositions'} to tell your story.`}
         </p>
 
-        {/* Updated Style Breakdown to reflect new Branding logic */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 max-w-4xl mx-auto">
           {[
             {
@@ -539,7 +535,6 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
         </button>
       </section>
 
-      {/* Portfolio Grid without dull Grayscale */}
       <section className="px-8 pb-48">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {images.map((img, i) => (
@@ -567,7 +562,6 @@ const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState,
         </div>
       </section>
 
-      {/* Pricing Section */}
       <section className="py-48 bg-soft px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-32 space-y-6">
@@ -763,3 +757,329 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
                 <option className="bg-paper">Couple</option>
                 <option className="bg-paper">Family (3-5)</option>
                 <option className="bg-paper">Large Group (6+)</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type</label>
+              <select required className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink">
+                <option className="bg-paper" value="">Select Location</option>
+                <option className="bg-paper">Natural / Outdoor</option>
+                <option className="bg-paper">Studio / Minimal</option>
+                <option className="bg-paper">Urban / Architectural</option>
+                <option className="bg-paper">In-Home / Lifestyle</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Any special requests or details to share?</label>
+            <textarea
+              rows={4}
+              defaultValue={quizState?.customMessage || ''}
+              className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors resize-none text-ink"
+              placeholder="Tell me more about your vision..."
+            />
+          </div>
+
+          <div className="flex flex-col md:flex-row items-end gap-8 pt-8">
+            <div className="flex-1 space-y-2 w-full">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Do you have a moodboard or inspiration link?</label>
+              <input type="url" className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors text-ink" placeholder="Pinterest or Instagram link" />
+            </div>
+            <div className="relative">
+              <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
+              <button type="button" className="flex items-center gap-3 px-6 py-4 border border-ink/10 rounded-xl hover:bg-soft transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap text-ink font-bold">
+                <Plus className="w-4 h-4" />
+                Upload File
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-8 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:scale-[1.01] transition-transform shadow-xl shadow-ink/10"
+          >
+            Send Inquiry
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer className="py-32 px-8 bg-paper border-t border-ink/5">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+      <div className="md:col-span-2 space-y-8">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center">
+            <Camera className="w-4 h-4 text-ink" />
+          </div>
+          <span className="font-serif text-2xl tracking-[0.2em] uppercase text-ink">Ontario Photo Co.</span>
+        </div>
+        <p className="text-lg text-ink/60 font-light leading-relaxed max-w-sm serif italic">
+          Capturing the modern visionaries and authentic storytellers of Ontario. Based in Toronto, traveling worldwide.
+        </p>
+        <div className="flex gap-6">
+          <a href="#" className="w-10 h-10 rounded-full border border-ink/10 flex items-center justify-center text-ink hover:bg-ink hover:text-paper transition-all">
+            <Instagram className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h4 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Navigation</h4>
+        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/70 font-bold">
+          <li><a href="#" className="hover:text-ink transition-colors">Portfolio</a></li>
+          <li><a href="#" className="hover:text-ink transition-colors">Experience</a></li>
+          <li><a href="#" className="hover:text-ink transition-colors">Pricing</a></li>
+          <li><a href="#" className="hover:text-ink transition-colors">Journal</a></li>
+        </ul>
+      </div>
+
+      <div className="space-y-6">
+        <h4 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Contact</h4>
+        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/70 font-bold">
+          <li>hello@ontariophoto.co</li>
+          <li>Toronto, Ontario</li>
+          <li>Kawartha Lakes, ON</li>
+        </ul>
+      </div>
+    </div>
+    <div className="max-w-7xl mx-auto mt-32 pt-12 border-t border-ink/5 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p className="text-[9px] uppercase tracking-[0.3em] text-ink/40 font-bold">© 2026 Ontario Photo Co. All rights reserved.</p>
+      <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-ink/40 font-bold">
+        <a href="#" className="hover:text-ink transition-colors">Privacy Policy</a>
+        <a href="#" className="hover:text-ink transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+);
+
+const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
+  <div className="space-y-0">
+    <Hero onStartQuiz={onStartQuiz} />
+
+    <section className="py-48 px-8 bg-paper relative overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="space-y-12"
+        >
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">The Philosophy</span>
+          <h2 className="font-serif text-6xl md:text-7xl leading-[0.9] text-ink tracking-tight">
+            Capturing the <br /><span className="italic font-light">Unspoken</span> Narrative.
+          </h2>
+          <div className="space-y-8 text-xl text-ink/60 font-light leading-relaxed serif italic">
+            <p>
+              In a world of filtered perfection, I seek the raw, the real, and the refined. Whether it's the quiet confidence of a CEO in Toronto's core or the soft laughter of a family in the Muskoka pines, my lens is focused on the truth of the moment.
+            </p>
+            <p>
+              I don't just take photos; I curate legacies. Your story deserves more than a pose—it deserves a perspective.
+            </p>
+          </div>
+          <div className="pt-8">
+            <button onClick={onStartQuiz} className="group flex items-center gap-6 text-[10px] uppercase tracking-[0.3em] font-bold text-ink hover:text-accent transition-colors">
+              <span>Discover your aesthetic</span>
+              <div className="w-12 h-px bg-ink group-hover:w-20 transition-all duration-500" />
+            </button>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2 }}
+          viewport={{ once: true }}
+          className="relative aspect-[4/5] rounded-[60px] overflow-hidden card-shadow group"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&q=80&w=800"
+            alt="Photographer at work"
+            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-ink/5" />
+        </motion.div>
+      </div>
+    </section>
+
+    <section id="portfolio" className="py-48 px-8 bg-soft">
+      <div className="max-w-7xl mx-auto space-y-32">
+        <div className="text-center space-y-6">
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">Portfolio Highlights</span>
+          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Featured <span className="italic font-light">Work.</span></h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200" alt="Portrait" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
+              <div className="text-left space-y-4">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Portrait Path</p>
+                <h3 className="font-serif text-4xl italic text-paper">The Soulful Storyteller</h3>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Branding" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
+              <div className="text-left space-y-4">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Branding Path</p>
+                <h3 className="font-serif text-3xl italic text-paper">The Modern Visionary</h3>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=600" alt="Creative" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+          </div>
+          <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" alt="Landscape" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" className="py-48 px-8 bg-paper">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          {[
+            { step: '01', title: 'The Discovery', desc: 'We start with the quiz to align our visions and find the aesthetic that fits your unique story.' },
+            { step: '02', title: 'The Session', desc: 'A relaxed, guided experience on location in Ontario, focused on movement and authentic light.' },
+            { step: '03', title: 'The Legacy', desc: 'Receive a curated digital gallery and high-end motion clips designed to last a lifetime.' }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8 p-12 rounded-[40px] border border-ink/5 bg-soft/50"
+            >
+              <span className="font-serif text-6xl italic text-accent opacity-30">{item.step}</span>
+              <h3 className="text-2xl font-serif text-ink">{item.title}</h3>
+              <p className="text-ink/60 font-light leading-relaxed serif italic">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" className="py-48 bg-soft px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-32 space-y-6">
+          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Investment.</h2>
+          <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">Collections starting at $500</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+            <h3 className="font-serif text-4xl italic text-ink">Portrait Sessions</h3>
+            <p className="text-ink/60 font-light leading-relaxed serif italic">Capturing personal milestones, family legacies, and individual stories across Ontario.</p>
+            <p className="text-3xl font-serif text-ink">Starting at $500</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+          </div>
+          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+            <h3 className="font-serif text-4xl italic text-ink">Branding & Commercial</h3>
+            <p className="text-ink/60 font-light leading-relaxed serif italic">Elevating professional identities for modern visionaries and creative entrepreneurs.</p>
+            <p className="text-3xl font-serif text-ink">Starting at $950</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-48 px-8 bg-paper overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-32 items-center">
+          <div className="md:w-1/3 space-y-8">
+            <h2 className="font-serif text-7xl md:text-8xl italic text-ink leading-none">Client <br />Love.</h2>
+            <p className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold">Voices from across Ontario</p>
+          </div>
+          <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-16">
+            {[
+              { quote: "The branding session completely changed how I show up online. I finally look as professional as my business feels.", author: "Sarah J., Entrepreneur (Toronto)" },
+              { quote: "I've never felt comfortable in front of a camera until now. These photos feel like the real me.", author: "Michael R., Artist (Hamilton)" }
+            ].map((t, i) => (
+              <div key={i} className="space-y-6">
+                <p className="text-2xl font-serif italic leading-relaxed text-ink">"{t.quote}"</p>
+                <div className="w-8 h-px bg-accent/40" />
+                <p className="text-[9px] uppercase tracking-[0.3em] text-accent font-bold">— {t.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-64 px-8 text-center bg-soft relative">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,var(--color-accent)_0%,transparent_70%)]" />
+      </div>
+      <div className="max-w-4xl mx-auto space-y-16 relative z-10">
+        <h2 className="font-serif text-7xl md:text-[120px] text-ink leading-[0.85] tracking-tight">Ready to tell <br /><span className="italic font-light">your</span> story?</h2>
+        <button
+          onClick={onStartQuiz}
+          className="px-20 py-8 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.4em] text-[10px] hover:scale-105 transition-all shadow-2xl shadow-ink/20"
+        >
+          Begin the Discovery
+        </button>
+      </div>
+    </section>
+  </div>
+);
+
+export default function App() {
+  const [view, setView] = useState<'hero' | 'quiz' | 'results' | 'booking'>('hero');
+  const [quizState, setQuizState] = useState<QuizState | null>(null);
+  const [selectedService, setSelectedService] = useState<string>('');
+
+  const handleStartQuiz = () => setView('quiz');
+
+  const handleQuizComplete = (state: QuizState) => {
+    setQuizState(state);
+    setView('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBook = () => {
+    setView('booking');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="selection:bg-accent/20 selection:text-ink">
+      <Navbar onNavigate={(v) => {
+        setView(v);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }} />
+
+      <main>
+        {view === 'hero' && <Home onStartQuiz={handleStartQuiz} />}
+
+        {view === 'quiz' && <Quiz onComplete={handleQuizComplete} />}
+
+        {view === 'results' && quizState && (
+          <Results
+            quizState={quizState}
+            onBook={handleBook}
+            onSelectPackage={(pkg) => setSelectedService(pkg)}
+          />
+        )}
+
+        {view === 'booking' && (
+          <InquiryForm
+            quizState={quizState}
+            onEditQuiz={() => setView('quiz')}
+            initialService={selectedService}
+          />
+        )}
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
