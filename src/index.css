@@ -6,8 +6,10 @@
   --font-serif: "Cormorant Garamond", serif;
   /* Elevated Feminine Palette */
   --color-paper: #FDFBF7;
-  --color-ink: #4A403A;
-  --color-accent: #C8A9A1;
+  --color-ink: #2C2623;
+  /* Deepened for much punchier text contrast */
+  --color-accent: #8E6B62;
+  /* Richer, darker dusty rose for readable accents */
   --color-soft: #F9F3F1;
 }
 
