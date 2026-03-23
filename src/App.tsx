@@ -444,24 +444,29 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
 const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, onEditQuiz: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [showErrors, setShowErrors] = useState(false);
+  const [moodboard, setMoodboard] = useState('');
   const [formData, setFormData] = useState({
     service: ''
   });
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFileName(e.target.files[0].name);
-    } else {
-      setFileName(null);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
     const form = e.currentTarget;
+
+    // Prevent submission and highlight errors if fields are missing
+    if (!formData.service || !form.checkValidity()) {
+      setShowErrors(true);
+      return;
+    }
+
+    setIsSubmitting(true);
     const data = new FormData(form);
+
+    // Clean up empty https:// prefix so it doesn't send junk to your inbox
+    if (data.get('moodboardLink') === 'https://') {
+      data.set('moodboardLink', '');
+    }
 
     try {
       const response = await fetch("https://formspree.io/f/mzdjnrqy", {
@@ -538,7 +543,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-16">
+        {/* Added noValidate to allow custom React validation styling */}
+        <form onSubmit={handleSubmit} className="space-y-16" noValidate>
           {/* Hidden inputs to capture React state data in Formspree */}
           <input type="hidden" name="selectedService" value={formData.service} />
           {quizState && (
@@ -551,8 +557,11 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           )}
 
           <div className="space-y-6">
-            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Which service are you interested in?</label>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex justify-between items-center">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Which service are you interested in? *</label>
+              {showErrors && !formData.service && <span className="text-[10px] uppercase tracking-widest text-red-500 font-bold">Please select a service</span>}
+            </div>
+            <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 transition-colors ${showErrors && !formData.service ? 'p-4 -mx-4 bg-red-50/50 rounded-3xl border border-red-200' : ''}`}>
               {(quizState?.path === 'branding' ? [
                 { id: 'The Branding Suite', price: '$950', desc: '90-minute session, 3 motion clips' },
                 { id: 'Brand Authority', price: '$1,850', desc: 'Half-day, 8 motion clips, full rights' },
@@ -565,7 +574,10 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
                 <button
                   key={service.id}
                   type="button"
-                  onClick={() => setFormData({ ...formData, service: service.id })}
+                  onClick={() => {
+                    setFormData({ ...formData, service: service.id });
+                    if (showErrors) setShowErrors(false);
+                  }}
                   className={`p-6 rounded-2xl border text-left transition-all card-shadow ${formData.service === service.id
                       ? 'border-ink bg-ink text-paper'
                       : 'border-ink/10 bg-white hover:border-ink/30'
@@ -583,17 +595,17 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Full Name</label>
-              <input required name="fullName" type="text" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Your name" />
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Full Name *</label>
+              <input required name="fullName" type="text" className={`w-full bg-transparent border-b py-3 outline-none transition-colors font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`} placeholder="Your name" />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Email Address</label>
-              <input required name="email" type="email" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="hello@example.com" />
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Email Address *</label>
+              <input required name="email" type="email" className={`w-full bg-transparent border-b py-3 outline-none transition-colors font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`} placeholder="hello@example.com" />
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">What is the occasion?</label>
-              <select required name="occasion" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">What is the occasion? *</label>
+              <select required name="occasion" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
                 <option className="bg-paper" value="">Select Occasion</option>
                 <option className="bg-paper">Personal Milestone</option>
                 <option className="bg-paper">Business Branding</option>
@@ -602,8 +614,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Who will be in the photos?</label>
-              <select required name="attendees" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Who will be in the photos? *</label>
+              <select required name="attendees" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
                 <option className="bg-paper" value="">Select Attendees</option>
                 <option className="bg-paper">Just Me</option>
                 <option className="bg-paper">Couple</option>
@@ -612,9 +624,9 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
               </select>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type</label>
-              <select required name="locationType" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type *</label>
+              <select required name="locationType" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
                 <option className="bg-paper" value="">Select Location</option>
                 <option className="bg-paper">Natural / Outdoor</option>
                 <option className="bg-paper">Studio / Minimal</option>
@@ -635,19 +647,18 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
             />
           </div>
 
-          <div className="flex flex-col md:flex-row items-end gap-8 pt-8">
-            <div className="flex-1 space-y-2 w-full">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Do you have a moodboard or inspiration link?</label>
-              <input name="moodboardLink" type="url" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Pinterest or Instagram link" />
-            </div>
-            <div className="relative">
-              {/* Added onChange handler to track the file name */}
-              <input onChange={handleFileChange} name="attachment" type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
-              <button type="button" className={`flex items-center gap-3 px-6 py-4 border rounded-xl transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap font-bold ${fileName ? 'border-accent bg-accent/5 text-accent' : 'border-ink/20 hover:bg-soft text-ink'}`}>
-                {fileName ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                {fileName ? fileName : 'Upload File'}
-              </button>
-            </div>
+          <div className="space-y-2 pt-4">
+            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Do you have a moodboard or inspiration link?</label>
+            <input
+              name="moodboardLink"
+              type="url"
+              value={moodboard}
+              onFocus={() => { if (!moodboard) setMoodboard('https://'); }}
+              onBlur={() => { if (moodboard === 'https://') setMoodboard(''); }}
+              onChange={(e) => setMoodboard(e.target.value)}
+              className={`w-full bg-transparent border-b py-3 outline-none transition-colors text-ink font-medium ${showErrors ? 'invalid:border-red-500 border-ink/30 focus:border-ink' : 'border-ink/30 focus:border-ink'}`}
+              placeholder="Pinterest or Instagram link (Optional)"
+            />
           </div>
 
           <button
