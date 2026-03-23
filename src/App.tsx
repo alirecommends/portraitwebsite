@@ -44,13 +44,13 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'booking'
       </button>
       <div className="hidden md:flex items-center gap-12 text-[9px] uppercase tracking-[0.3em] font-bold text-ink/70">
         <button onClick={() => handleScroll('portfolio')} className="hover:text-ink transition-colors">Portfolio</button>
-        <button onClick={() => handleScroll('experience')} className="hover:text-ink transition-colors">Experience</button>
-        <button onClick={() => handleScroll('pricing')} className="hover:text-ink transition-colors">Pricing</button>
+        <button onClick={() => handleScroll('experience')} className="hover:text-ink transition-colors">The Experience</button>
+        <button onClick={() => handleScroll('pricing')} className="hover:text-ink transition-colors">Investment</button>
         <button
           onClick={() => onNavigate('quiz')}
           className="px-10 py-4 bg-ink text-paper rounded-full hover:scale-105 transition-all shadow-lg shadow-ink/10"
         >
-          Book Now
+          Book Your Shoot
         </button>
       </div>
     </nav>
@@ -81,19 +81,19 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="relative z-10 max-w-5xl"
     >
-      <span className="text-[11px] uppercase tracking-[0.5em] text-accent mb-10 block font-bold">Aesthetic Discovery</span>
-      <h1 className="font-serif text-7xl md:text-[120px] mb-10 leading-[0.85] text-ink tracking-tight">
-        Your Story, <br />
-        <span className="italic font-light">Expertly Told.</span>
+      <span className="text-[11px] uppercase tracking-[0.5em] text-accent mb-10 block font-bold">A Transformative Experience</span>
+      <h1 className="font-serif text-7xl md:text-[110px] mb-10 leading-[0.9] text-ink tracking-tight">
+        How do you want to <br />
+        <span className="italic font-light">be photographed?</span>
       </h1>
       <p className="text-xl md:text-2xl text-ink/70 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
-        Elevated photography for the modern visionary.
+        A luxury portrait and personal branding studio empowering modern visionaries.
       </p>
       <button
         onClick={onStartQuiz}
         className="group relative px-12 py-6 bg-ink text-paper rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-xl shadow-ink/10 flex items-center justify-center mx-auto gap-4"
       >
-        <span className="relative z-10 uppercase tracking-[0.3em] text-[10px]">Begin Your Discovery</span>
+        <span className="relative z-10 uppercase tracking-[0.3em] text-[10px]">Design Your Session</span>
         <ArrowRight className="w-4 h-4" />
       </button>
     </motion.div>
@@ -196,7 +196,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col items-center justify-end p-16 text-center space-y-6">
-                    <h3 className="font-serif text-4xl italic text-white">Capturing a personal milestone</h3>
+                    <h3 className="font-serif text-4xl italic text-white">Capturing my personal legacy</h3>
                     <div className="w-12 h-px bg-white/50 group-hover:w-24 transition-all duration-500" />
                     <p className="text-[9px] uppercase tracking-[0.4em] text-white/80 group-hover:text-white transition-colors font-bold">Select Path</p>
                   </div>
@@ -252,8 +252,8 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'candid', label: 'Social Media & Daily Content', desc: 'Instagram, TikTok, and authentic daily stories.', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800' },
-                  { id: 'classic', label: 'Website & Press Features', desc: 'Landing pages, speaker bios, and PR media kits.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800' }
+                  { id: 'candid', label: 'Social Media & Content', desc: 'Authentic behind-the-scenes and daily stories.', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800' },
+                  { id: 'classic', label: 'Website & Press Features', desc: 'High-end landing pages and PR media kits.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -285,8 +285,8 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'airy', label: 'Bright, Modern Studio', desc: 'Clean lines, natural light, and minimalist aesthetic.', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'moody', label: 'In-Action & On-Location', desc: 'Your office, a stylish cafe, or urban outdoors.', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'airy', label: 'Bright, Modern Studio', desc: 'Clean lines, controlled light, and a minimalist aesthetic.', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600' },
+                  { id: 'moody', label: 'In-Action & On-Location', desc: 'Your office, a stylish hotel, or an urban backdrop.', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -305,7 +305,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* PORTRAIT QUIZ */}
+          {/* PORTRAIT QUIZ - SUE BRYCE OPTIMIZED */}
           {state.step === 2 && state.path === 'portrait' && (
             <motion.div
               key="step2-portrait"
@@ -315,12 +315,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">Which lighting do you <br /><span className="italic font-light">feel drawn to?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">How do you want to <br /><span className="italic font-light">feel in your portraits?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'airy', label: 'Bright & Airy', desc: 'Soft, clean, and filled with natural light.', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'moody', label: 'Dark & Moody', desc: 'Dramatic shadows, rich contrast, and deep tones.', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800' }
+                  { id: 'airy', label: 'Fierce & Empowered', desc: 'Bold, confident, and unapologetically you.', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800' },
+                  { id: 'moody', label: 'Timeless & Elegant', desc: 'Classic, graceful, and beautifully sophisticated.', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -348,12 +348,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">What kind of poses <br /><span className="italic font-light">do you prefer?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">Who are we <br /><span className="italic font-light">celebrating today?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'classic', label: 'Classic & Posed', desc: 'Timeless, intentional, and polished.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'candid', label: 'Candid & Natural', desc: 'Unscripted, movement-focused, and raw.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'classic', label: 'Celebrating Myself', desc: 'A day of pampering just for you to reconnect with your beauty.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600' },
+                  { id: 'candid', label: 'Generations & Family', desc: 'Capturing the legacy and connection with those you love most.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -381,12 +381,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">Which color palette <br /><span className="italic font-light">speaks to you?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">What is your dream <br /><span className="italic font-light">wardrobe style?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'moody', label: 'Deep & Rich Tones', desc: 'Warm browns, deep greens, and golden hues.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'airy', label: 'Soft & Pastel Hues', desc: 'Cool blues, soft whites, and muted tones.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'moody', label: 'Glamour & Couture', desc: 'Tulle, gowns, dark laces, and show-stopping elegance.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600' },
+                  { id: 'airy', label: 'Soft & Intimate', desc: 'Silks, sheer fabrics, casual knits, and beautiful simplicity.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -500,8 +500,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           <div className="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto">
             <Check className="w-10 h-10" />
           </div>
-          <h2 className="font-serif text-4xl text-ink">Thank you!</h2>
-          <p className="text-ink/70">I've received your inquiry. Expect a personalized response within 24 hours to schedule our discovery call.</p>
+          <h2 className="font-serif text-4xl text-ink">Thank you.</h2>
+          <p className="text-ink/70">I've received your inquiry. Expect a personalized response within 24-48 hours to schedule your complimentary discovery call.</p>
           <button onClick={() => window.location.reload()} className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold transition-colors">Back to Home</button>
         </motion.div>
       </section>
@@ -512,15 +512,15 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
     <section className="py-32 px-6 bg-paper">
       <div className="max-w-4xl mx-auto">
         <div className="mb-20 text-center space-y-4">
-          <h2 className="font-serif text-6xl md:text-7xl text-ink">Let's Begin.</h2>
-          <p className="text-accent uppercase tracking-[0.3em] text-[10px] font-bold">Secure your date for 2025/2026</p>
+          <h2 className="font-serif text-6xl md:text-7xl text-ink">Let's Design It.</h2>
+          <p className="text-accent uppercase tracking-[0.3em] text-[10px] font-bold">Inquire about availability for 2025/2026</p>
         </div>
 
-        {/* Discovery Profile Summary (High Contrast Update) */}
+        {/* Discovery Profile Summary */}
         {quizState && (
           <div className="mb-16 p-8 rounded-3xl border border-ink/10 bg-soft space-y-6 card-shadow">
             <div className="flex items-center justify-between">
-              <h3 className="text-[10px] uppercase tracking-widest text-accent font-bold">Your Discovery Profile</h3>
+              <h3 className="text-[10px] uppercase tracking-widest text-accent font-bold">Your Session Profile</h3>
               <button
                 onClick={onEditQuiz}
                 className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold transition-colors"
@@ -530,9 +530,9 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
             </div>
             <div className="flex flex-wrap gap-3">
               {[
-                { label: 'Path', value: quizState.path === 'branding' ? 'Branding' : 'Portrait' },
-                { label: quizState.path === 'branding' ? 'Vibe' : 'Lighting', value: quizState.path === 'branding' ? (quizState.lighting === 'airy' ? 'Warm' : 'Sleek') : (quizState.lighting === 'airy' ? 'Airy' : 'Moody') },
-                { label: quizState.path === 'branding' ? 'Focus' : 'Pose', value: quizState.path === 'branding' ? (quizState.poses === 'candid' ? 'Social' : 'Website') : (quizState.poses === 'classic' ? 'Classic' : 'Candid') }
+                { label: 'Path', value: quizState.path === 'branding' ? 'Branding' : 'Legacy Portrait' },
+                { label: quizState.path === 'branding' ? 'Vibe' : 'Feeling', value: quizState.path === 'branding' ? (quizState.lighting === 'airy' ? 'Warm' : 'Sleek') : (quizState.lighting === 'airy' ? 'Fierce' : 'Elegant') },
+                { label: quizState.path === 'branding' ? 'Focus' : 'Focus', value: quizState.path === 'branding' ? (quizState.poses === 'candid' ? 'Social Content' : 'Website Assets') : (quizState.poses === 'classic' ? 'Self Celebration' : 'Generations') }
               ].map((chip, i) => (
                 <div key={i} className="px-5 py-2.5 rounded-full border border-ink/15 bg-paper flex items-center gap-3 shadow-sm">
                   <span className="text-[10px] uppercase tracking-widest text-accent font-bold">{chip.label}</span>
@@ -543,7 +543,6 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           </div>
         )}
 
-        {/* Added noValidate to allow custom React validation styling */}
         <form onSubmit={handleSubmit} className="space-y-16" noValidate>
           {/* Hidden inputs to capture React state data in Formspree */}
           <input type="hidden" name="selectedService" value={formData.service} />
@@ -558,18 +557,18 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
 
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Which service are you interested in? *</label>
-              {showErrors && !formData.service && <span className="text-[10px] uppercase tracking-widest text-red-500 font-bold">Please select a service</span>}
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Which experience are you drawn to? *</label>
+              {showErrors && !formData.service && <span className="text-[10px] uppercase tracking-widest text-red-500 font-bold">Please select an experience</span>}
             </div>
             <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 transition-colors ${showErrors && !formData.service ? 'p-4 -mx-4 bg-red-50/50 rounded-3xl border border-red-200' : ''}`}>
               {(quizState?.path === 'branding' ? [
-                { id: 'The Branding Suite', price: '$950', desc: '90-minute session, 3 motion clips' },
-                { id: 'Brand Authority', price: '$1,850', desc: 'Half-day, 8 motion clips, full rights' },
-                { id: 'The Mini Collection', price: '$500', desc: '30-minute express branding' }
+                { id: 'Personal Branding', price: '$950', desc: 'Pre-consultation, guided shoot, and 5 digital assets.' },
+                { id: 'Brand Authority', price: '$1,850', desc: 'Half-day shoot, HMUA included, and full commercial folio.' },
+                { id: 'The Refresh', price: '$500', desc: 'Quick 30-min headshot update.' }
               ] : [
-                { id: 'The Signature Session', price: '$500', desc: '90-minute session, digital gallery' },
-                { id: 'Legacy Collection', price: '$950', desc: 'Half-day, linen photo book' },
-                { id: 'The Mini Collection', price: '$350', desc: '30-minute seasonal session' }
+                { id: 'The Portrait Session', price: '$390 Session Fee', desc: 'Consultation, HMUA, and fully guided photoshoot.' },
+                { id: 'The Legacy Folio', price: '$1,200+', desc: 'Session fee + beautiful handcrafted folio box of matted prints.' },
+                { id: 'Generations', price: '$490 Session Fee', desc: 'Bring your mother, sister, or daughter. HMUA for two.' }
               ]).map((service) => (
                 <button
                   key={service.id}
@@ -585,9 +584,9 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
                 >
                   <div className="flex justify-between items-start mb-4">
                     <h4 className="font-serif text-lg leading-tight">{service.id}</h4>
-                    <span className={`text-[10px] font-bold uppercase tracking-widest ${formData.service === service.id ? 'text-accent' : 'text-accent'}`}>{service.price}</span>
                   </div>
-                  <p className={`text-[10px] leading-relaxed uppercase tracking-wider ${formData.service === service.id ? 'text-paper/80' : 'text-ink/60'}`}>{service.desc}</p>
+                  <div className={`text-[10px] font-bold uppercase tracking-widest mb-2 ${formData.service === service.id ? 'text-accent' : 'text-accent'}`}>{service.price}</div>
+                  <p className={`text-[10px] leading-relaxed tracking-wider ${formData.service === service.id ? 'text-paper/80' : 'text-ink/60'}`}>{service.desc}</p>
                 </button>
               ))}
             </div>
@@ -607,43 +606,26 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">What is the occasion? *</label>
               <select required name="occasion" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
                 <option className="bg-paper" value="">Select Occasion</option>
-                <option className="bg-paper">Personal Milestone</option>
-                <option className="bg-paper">Business Branding</option>
-                <option className="bg-paper">Family Legacy</option>
-                <option className="bg-paper">Creative Project</option>
+                <option className="bg-paper">Celebrating Myself</option>
+                <option className="bg-paper">Business Milestone</option>
+                <option className="bg-paper">Maternity / Motherhood</option>
+                <option className="bg-paper">Generations</option>
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Who will be in the photos? *</label>
-              <select required name="attendees" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
-                <option className="bg-paper" value="">Select Attendees</option>
-                <option className="bg-paper">Just Me</option>
-                <option className="bg-paper">Couple</option>
-                <option className="bg-paper">Family (3-5)</option>
-                <option className="bg-paper">Large Group (6+)</option>
-              </select>
-            </div>
-
-            <div className="space-y-2 md:col-span-2">
-              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type *</label>
-              <select required name="locationType" className={`w-full bg-transparent border-b py-3 outline-none transition-colors appearance-none cursor-pointer font-medium text-ink ${showErrors ? 'border-ink/30 focus:border-ink invalid:border-red-500 invalid:text-red-500' : 'border-ink/30 focus:border-ink'}`}>
-                <option className="bg-paper" value="">Select Location</option>
-                <option className="bg-paper">Natural / Outdoor</option>
-                <option className="bg-paper">Studio / Minimal</option>
-                <option className="bg-paper">Urban / Architectural</option>
-                <option className="bg-paper">In-Home / Lifestyle</option>
-              </select>
+              <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Phone Number (Optional)</label>
+              <input name="phone" type="tel" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors font-medium text-ink" placeholder="For a quicker response" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Any special requests or details to share?</label>
+            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Why is now the right time for a photoshoot?</label>
             <textarea
               name="specialRequests"
               rows={4}
               defaultValue={quizState?.customMessage || ''}
               className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors resize-none text-ink font-medium"
-              placeholder="Tell me more about your vision..."
+              placeholder="Tell me more about your vision and what this shoot means to you..."
             />
           </div>
 
@@ -666,7 +648,7 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
             disabled={isSubmitting}
             className={`w-full py-8 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all shadow-xl ${isSubmitting ? 'bg-ink/50 text-paper/80 cursor-not-allowed shadow-none' : 'bg-ink text-paper hover:scale-[1.01] shadow-ink/10'}`}
           >
-            {isSubmitting ? 'Sending Inquiry...' : 'Send Inquiry'}
+            {isSubmitting ? 'Sending Inquiry...' : 'Submit Inquiry'}
           </button>
         </form>
       </div>
@@ -685,7 +667,7 @@ const Footer = () => (
           <span className="font-serif text-2xl tracking-[0.2em] uppercase text-ink">Ontario Photo Co.</span>
         </div>
         <p className="text-lg text-ink/70 font-light leading-relaxed max-w-sm serif italic">
-          Capturing the modern visionaries and authentic storytellers of Ontario. Based in Toronto, traveling worldwide.
+          It is my job to take the most beautiful photograph you have ever seen of yourself. Based in Toronto, traveling worldwide.
         </p>
         <div className="flex gap-6">
           <a href="#" className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-paper transition-all">
@@ -698,8 +680,8 @@ const Footer = () => (
         <h4 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Navigation</h4>
         <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/80 font-bold">
           <li><a href="#" className="hover:text-accent transition-colors">Portfolio</a></li>
-          <li><a href="#" className="hover:text-accent transition-colors">Experience</a></li>
-          <li><a href="#" className="hover:text-accent transition-colors">Pricing</a></li>
+          <li><a href="#" className="hover:text-accent transition-colors">The Experience</a></li>
+          <li><a href="#" className="hover:text-accent transition-colors">Investment</a></li>
           <li><a href="#" className="hover:text-accent transition-colors">Journal</a></li>
         </ul>
       </div>
@@ -736,21 +718,21 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
           viewport={{ once: true }}
           className="space-y-12"
         >
-          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">The Philosophy</span>
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">My Philosophy</span>
           <h2 className="font-serif text-6xl md:text-7xl leading-[0.9] text-ink tracking-tight">
-            Capturing the <br /><span className="italic font-light">Unspoken</span> Narrative.
+            Exist in photos for <br /><span className="italic font-light">your legacy.</span>
           </h2>
           <div className="space-y-8 text-xl text-ink/70 font-light leading-relaxed serif italic">
             <p>
-              In a world of filtered perfection, I seek the raw, the real, and the refined. Whether it's the quiet confidence of a CEO in Toronto's core or the soft laughter of a family in the Muskoka pines, my lens is focused on the truth of the moment.
+              I believe every woman deserves to see her own beauty. We so often hide behind the camera, waiting to lose 10 pounds or waiting for the "perfect" time. The perfect time is right now.
             </p>
             <p>
-              I don't just take photos; I curate legacies. Your story deserves more than a pose—it deserves a perspective.
+              It is my absolute passion to take the most beautiful photograph you have ever seen of yourself. Let's design a luxury photoshoot that celebrates exactly who you are today.
             </p>
           </div>
           <div className="pt-8">
             <button onClick={onStartQuiz} className="group flex items-center gap-6 text-[10px] uppercase tracking-[0.3em] font-bold text-ink hover:text-accent transition-colors">
-              <span>Discover your aesthetic</span>
+              <span>Design Your Session</span>
               <div className="w-12 h-px bg-ink group-hover:w-20 transition-all duration-500" />
             </button>
           </div>
@@ -777,8 +759,8 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
     <section id="portfolio" className="py-48 px-8 bg-soft">
       <div className="max-w-7xl mx-auto space-y-32">
         <div className="text-center space-y-6">
-          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">Portfolio Highlights</span>
-          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Featured <span className="italic font-light">Work.</span></h2>
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">Portfolio</span>
+          <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">The <span className="italic font-light">Folio.</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -786,8 +768,8 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200" alt="Portrait" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Portrait Path</p>
-                <h3 className="font-serif text-4xl italic text-white">The Soulful Storyteller</h3>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Contemporary Portrait</p>
+                <h3 className="font-serif text-4xl italic text-white">The Empowered Woman</h3>
               </div>
             </div>
           </div>
@@ -795,8 +777,8 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Branding" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Branding Path</p>
-                <h3 className="font-serif text-3xl italic text-white">The Modern Visionary</h3>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Personal Branding</p>
+                <h3 className="font-serif text-3xl italic text-white">The Visionary</h3>
               </div>
             </div>
           </div>
@@ -812,11 +794,15 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
 
     <section id="experience" className="py-48 px-8 bg-paper">
       <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-24 space-y-4">
+          <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">How It Works</span>
+          <h2 className="font-serif text-5xl md:text-6xl text-ink">The Luxury Experience</h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {[
-            { step: '01', title: 'The Discovery', desc: 'We start with the quiz to align our visions and find the aesthetic that fits your unique story.' },
-            { step: '02', title: 'The Session', desc: 'A relaxed, guided experience on location in Ontario, focused on movement and authentic light.' },
-            { step: '03', title: 'The Legacy', desc: 'Receive a curated digital gallery and high-end motion clips designed to last a lifetime.' }
+            { step: '01', title: 'Consultation & Styling', desc: 'We begin with a design consultation to discuss your dream shoot, wardrobe selection, and how you want to be photographed.' },
+            { step: '02', title: 'Hair, Makeup & Shoot', desc: 'Arrive at the studio for professional hair and makeup. Then, I will fully direct and pose you to capture your most flattering angles.' },
+            { step: '03', title: 'The Reveal Session', desc: 'Return to the studio (or join via Zoom) to view your beautifully retouched portraits and purchase your luxury Folio Box or wall art.' }
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -839,20 +825,20 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-32 space-y-6">
           <h2 className="font-serif text-6xl md:text-8xl text-ink tracking-tight">Investment.</h2>
-          <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">Collections starting at $500</p>
+          <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">Session fee required to book your date</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="p-16 rounded-[48px] border border-ink/10 bg-paper space-y-8 card-shadow">
-            <h3 className="font-serif text-4xl italic text-ink">Portrait Sessions</h3>
-            <p className="text-ink/70 font-light leading-relaxed serif italic">Capturing personal milestones, family legacies, and individual stories across Ontario.</p>
-            <p className="text-3xl font-serif text-ink">Starting at $500</p>
-            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+            <h3 className="font-serif text-4xl italic text-ink">Portrait Session Fee</h3>
+            <p className="text-ink/70 font-light leading-relaxed serif italic">Includes your design consultation, professional hair & makeup artistry, a fully guided photoshoot, and your reveal session. (Images sold separately).</p>
+            <p className="text-3xl font-serif text-ink">$390</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">Inquire Now</button>
           </div>
           <div className="p-16 rounded-[48px] border border-ink/10 bg-paper space-y-8 card-shadow">
-            <h3 className="font-serif text-4xl italic text-ink">Branding & Commercial</h3>
-            <p className="text-ink/70 font-light leading-relaxed serif italic">Elevating professional identities for modern visionaries and creative entrepreneurs.</p>
-            <p className="text-3xl font-serif text-ink">Starting at $950</p>
-            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
+            <h3 className="font-serif text-4xl italic text-ink">The Folio Box</h3>
+            <p className="text-ink/70 font-light leading-relaxed serif italic">Purchased at your Reveal Session. A beautiful, handcrafted luxury leather box containing your chosen matted prints and matching digital files.</p>
+            <p className="text-3xl font-serif text-ink">Starting at $1,200</p>
+            <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">Design Your Shoot</button>
           </div>
         </div>
       </div>
@@ -863,12 +849,12 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         <div className="flex flex-col md:flex-row gap-32 items-center">
           <div className="md:w-1/3 space-y-8">
             <h2 className="font-serif text-7xl md:text-8xl italic text-ink leading-none">Client <br />Love.</h2>
-            <p className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold">Voices from across Ontario</p>
+            <p className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold">Transformations from Ontario</p>
           </div>
           <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-16">
             {[
-              { quote: "The branding session completely changed how I show up online. I finally look as professional as my business feels.", author: "Sarah J., Entrepreneur (Toronto)" },
-              { quote: "I've never felt comfortable in front of a camera until now. These photos feel like the real me.", author: "Michael R., Artist (Hamilton)" }
+              { quote: "I walked into the studio feeling anxious, but by the time I was in hair and makeup, I felt like a queen. When I saw my photos, I cried. I didn't know I could look like that.", author: "Sarah J., Entrepreneur" },
+              { quote: "Doing a generations shoot with my mother and daughter is something I will cherish forever. The Folio Box is now our family's most prized possession.", author: "Michelle R." }
             ].map((t, i) => (
               <div key={i} className="space-y-6">
                 <p className="text-2xl font-serif italic leading-relaxed text-ink">"{t.quote}"</p>
@@ -886,12 +872,12 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,var(--color-accent)_0%,transparent_70%)]" />
       </div>
       <div className="max-w-4xl mx-auto space-y-16 relative z-10">
-        <h2 className="font-serif text-7xl md:text-[120px] text-ink leading-[0.85] tracking-tight">Ready to tell <br /><span className="italic font-light">your</span> story?</h2>
+        <h2 className="font-serif text-7xl md:text-[120px] text-ink leading-[0.85] tracking-tight">Ready to see <br /><span className="italic font-light">your beauty?</span></h2>
         <button
           onClick={onStartQuiz}
           className="px-20 py-8 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.4em] text-[10px] hover:scale-105 transition-all shadow-2xl shadow-ink/20"
         >
-          Begin the Discovery
+          Book Your Consultation
         </button>
       </div>
     </section>
