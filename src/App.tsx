@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Camera,
   ArrowRight,
   Check,
   Star,
-  Sparkles,
   Instagram,
-  Plus,
-  MapPin,
-  ChevronRight
+  Plus
 } from 'lucide-react';
 
 // --- Types ---
@@ -25,7 +22,7 @@ interface QuizState {
 }
 
 // --- Components ---
-const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results' | 'booking', sectionId?: string) => void }) => {
+const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'booking', sectionId?: string) => void }) => {
   const handleScroll = (id: string) => {
     onNavigate('hero');
     setTimeout(() => {
@@ -45,7 +42,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (view: 'hero' | 'quiz' | 'results'
         </div>
         <span className="font-serif text-2xl tracking-[0.2em] uppercase text-ink">Ontario Photo Co.</span>
       </button>
-      <div className="hidden md:flex items-center gap-12 text-[9px] uppercase tracking-[0.3em] font-bold text-ink/60">
+      <div className="hidden md:flex items-center gap-12 text-[9px] uppercase tracking-[0.3em] font-bold text-ink/70">
         <button onClick={() => handleScroll('portfolio')} className="hover:text-ink transition-colors">Portfolio</button>
         <button onClick={() => handleScroll('experience')} className="hover:text-ink transition-colors">Experience</button>
         <button onClick={() => handleScroll('pricing')} className="hover:text-ink transition-colors">Pricing</button>
@@ -89,7 +86,7 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         Your Story, <br />
         <span className="italic font-light">Expertly Told.</span>
       </h1>
-      <p className="text-xl md:text-2xl text-ink/60 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
+      <p className="text-xl md:text-2xl text-ink/70 mb-16 max-w-2xl mx-auto font-light leading-relaxed serif italic">
         Elevated photography for the modern visionary.
       </p>
       <button
@@ -101,7 +98,7 @@ const Hero = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
       </button>
     </motion.div>
 
-    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 opacity-30">
+    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 opacity-40">
       <div className="w-px h-20 bg-ink" />
       <span className="text-[9px] uppercase tracking-[0.4em] text-ink font-bold">Scroll</span>
     </div>
@@ -144,7 +141,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
         <div className="mb-16 flex items-center justify-between">
           <button
             onClick={prevStep}
-            className={`flex items-center gap-4 px-8 py-4 rounded-full border border-ink/10 text-[10px] uppercase tracking-widest font-bold text-ink/60 hover:text-ink hover:bg-soft transition-all ${state.step === 1 ? 'invisible' : ''}`}
+            className={`flex items-center gap-4 px-8 py-4 rounded-full border border-ink/20 text-[10px] uppercase tracking-widest font-bold text-ink/70 hover:text-ink hover:bg-soft transition-all ${state.step === 1 ? 'invisible' : ''}`}
           >
             <ArrowRight className="w-4 h-4 rotate-180" />
             <span>Back</span>
@@ -228,7 +225,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ lighting: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -261,7 +258,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ poses: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -294,7 +291,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ palette: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -328,7 +325,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ lighting: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -361,7 +358,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ poses: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -394,7 +391,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                   <button
                     key={opt.id}
                     onClick={() => nextStep({ palette: opt.id as any })}
-                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/5 text-left card-shadow"
+                    className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
@@ -419,19 +416,19 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             >
               <div className="space-y-4">
                 <h2 className="font-serif text-4xl md:text-5xl text-ink">Tell me about <br /><span className="italic font-light">your vision.</span></h2>
-                <p className="text-ink/60">What are you looking to create? Share as much or as little as you'd like.</p>
+                <p className="text-ink/70">What are you looking to create? Share as much or as little as you'd like.</p>
               </div>
               <div className="space-y-8">
                 <textarea
                   autoFocus
-                  className="w-full bg-transparent border-b border-ink/20 py-4 text-xl font-serif italic focus:border-ink outline-none transition-colors resize-none text-ink"
+                  className="w-full bg-transparent border-b border-ink/30 py-4 text-xl font-serif italic focus:border-ink outline-none transition-colors resize-none text-ink"
                   rows={4}
                   placeholder="I'm looking for..."
                   onChange={(e) => setState({ ...state, customMessage: e.target.value })}
                 />
                 <button
                   onClick={() => nextStep({})}
-                  className="w-full py-6 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:bg-accent transition-all"
+                  className="w-full py-6 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:opacity-90 transition-all"
                 >
                   Continue
                 </button>
@@ -444,200 +441,11 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
   );
 };
 
-const Results = ({ quizState, onBook, onSelectPackage }: { quizState: QuizState, onBook: () => void, onSelectPackage: (pkg: string) => void }) => {
-  const isBranding = quizState.path === 'branding';
-  const isAiry = quizState.lighting === 'airy';
-  const isMoody = quizState.lighting === 'moody';
-  const isCandid = quizState.poses === 'candid';
-
-  const brandingImages = [
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=400'
-  ];
-
-  const portraitImages = [
-    'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&q=80&w=400',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400'
-  ];
-
-  const images = isBranding ? brandingImages : portraitImages;
-
-  const handleSelect = (pkg: string) => {
-    onSelectPackage(pkg);
-    onBook();
-  };
-
-  return (
-    <div className="min-h-screen bg-paper">
-      <section className="pt-56 pb-32 px-6 text-center max-w-5xl mx-auto relative">
-        <div className="absolute top-40 left-1/2 -translate-x-1/2 font-serif text-[180px] opacity-[0.03] select-none pointer-events-none text-ink">
-          {isBranding ? 'Brand' : 'Story'}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-accent/10 border border-accent/20 text-[9px] uppercase tracking-[0.4em] mb-12 text-accent font-bold"
-        >
-          <Sparkles className="w-3 h-3" />
-          <span>Style Profile Identified</span>
-        </motion.div>
-
-        <h2 className="font-serif text-6xl md:text-[100px] mb-12 text-ink leading-[0.85] tracking-tight">
-          {isBranding ? (
-            <>The <span className="italic font-light">{isMoody ? 'Sophisticated' : 'Modern'}</span> <br />Visionary.</>
-          ) : (
-            <>The <span className="italic font-light">{isCandid ? 'Natural' : 'Classic'}</span> <br />Storyteller.</>
-          )}
-        </h2>
-
-        <p className="text-xl md:text-2xl text-ink/60 font-light leading-relaxed mb-20 max-w-3xl mx-auto serif italic">
-          {isBranding
-            ? `Your brand needs to look as high-end as the service you provide. We'll capture your authority with ${isAiry ? 'warm, inviting' : 'sleek, editorial'} visuals that convert.`
-            : `You want portraits that feel like you, not a posed mannequin. We'll focus on ${isCandid ? 'candid moments and movement' : 'timeless, intentional compositions'} to tell your story.`}
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 max-w-4xl mx-auto">
-          {[
-            {
-              label: isBranding ? 'Brand Vibe' : 'Lighting',
-              value: isBranding ? (isAiry ? 'Warm & Approachable' : 'Sleek & Editorial') : (isAiry ? 'Luminous & Soft' : 'Dramatic & Rich')
-            },
-            {
-              label: isBranding ? 'Primary Focus' : 'Direction',
-              value: isBranding ? (isCandid ? 'Social Media & Daily' : 'Website & PR Assets') : (isCandid ? 'Guided Movement' : 'Editorial Posing')
-            },
-            {
-              label: isBranding ? 'Setting' : 'Palette',
-              value: isBranding ? (quizState.palette === 'airy' ? 'Bright Studio Setup' : 'In-Action Workspace') : (quizState.palette === 'moody' ? 'Deep Earth Tones' : 'Soft Neutrals')
-            }
-          ].map((item, i) => (
-            <div key={i} className="space-y-3 p-8 rounded-[32px] border border-ink/5 bg-soft/50">
-              <p className="text-[9px] uppercase tracking-[0.4em] text-accent font-bold">{item.label}</p>
-              <p className="font-serif text-xl italic text-ink">{item.value}</p>
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={onBook}
-          className="px-16 py-6 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.3em] text-[10px] hover:scale-105 transition-all shadow-xl shadow-ink/10"
-        >
-          Proceed to Booking
-        </button>
-      </section>
-
-      <section className="px-8 pb-48">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {images.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
-              viewport={{ once: true }}
-              className={`aspect-[3/4] rounded-[32px] overflow-hidden card-shadow group ${i % 2 === 1 ? 'md:translate-y-12' : ''}`}
-            >
-              <img src={img} alt="Portfolio item" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-40 text-center space-y-8">
-          <div className="w-px h-24 bg-accent/30 mx-auto" />
-          <p className="text-[10px] uppercase tracking-[0.5em] text-accent font-bold">The Ontario Factor</p>
-          <p className="text-3xl md:text-4xl font-serif italic max-w-3xl mx-auto text-ink leading-relaxed">
-            {isBranding
-              ? "Available for on-location shoots at your GTA office or my partner studios in Liberty Village."
-              : "Available for outdoor sessions in the Blue Mountains, Kawarthas, or urban shoots in downtown Toronto."}
-          </p>
-        </div>
-      </section>
-
-      <section className="py-48 bg-soft px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-32 space-y-6">
-            <h2 className="font-serif text-5xl md:text-7xl text-ink">Investment</h2>
-            <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">2025 / 2026 Collections</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-12 relative overflow-hidden group card-shadow">
-              <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity text-ink">
-                <Star className="w-32 h-32" />
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">The Essential</h3>
-                <p className="font-serif text-4xl text-ink">{isBranding ? 'Branding Base' : 'Portrait Session'}</p>
-              </div>
-              <div className="text-6xl font-serif text-ink">
-                <span className="text-2xl align-top mr-2 opacity-30">$</span>
-                {isBranding ? '950' : '500'}
-              </div>
-              <ul className="space-y-6 text-sm text-ink/70 font-light">
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> 90-minute session</li>
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Pre-shoot style consultation</li>
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Private digital gallery</li>
-                {isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> 3 Social Media Motion clips</li>}
-              </ul>
-              <button
-                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')}
-                className="w-full py-6 rounded-full border border-ink/20 hover:bg-ink hover:text-paper transition-all uppercase tracking-[0.3em] text-[10px] font-bold text-ink"
-              >
-                Select Collection
-              </button>
-            </div>
-
-            <div className="p-16 rounded-[48px] bg-ink text-paper space-y-12 relative overflow-hidden card-shadow">
-              <div className="absolute top-10 right-10 px-4 py-1.5 rounded-full bg-paper/10 text-[9px] uppercase tracking-[0.3em] font-bold">Most Popular</div>
-              <div className="space-y-4">
-                <h3 className="text-[10px] uppercase tracking-[0.4em] opacity-40 font-bold">The Full Story</h3>
-                <p className="font-serif text-4xl">{isBranding ? 'Brand Authority' : 'Legacy Collection'}</p>
-              </div>
-              <div className="text-6xl font-serif">
-                <span className="text-2xl align-top mr-2 opacity-30">$</span>
-                {isBranding ? '1,850' : '950'}
-              </div>
-              <ul className="space-y-6 text-sm opacity-80 font-light">
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Half-day session (4 hours)</li>
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Multiple location options</li>
-                <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Full commercial usage rights</li>
-                {isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> 8 Social Media Motion clips</li>}
-                {!isBranding && <li className="flex items-center gap-4"><Check className="w-4 h-4 text-accent" /> Hand-crafted linen photo book</li>}
-              </ul>
-              <button
-                onClick={() => handleSelect(isBranding ? 'The Branding Suite' : 'The Signature Session')}
-                className="w-full py-6 rounded-full bg-paper text-ink hover:opacity-90 transition-all uppercase tracking-[0.3em] text-[10px] font-bold"
-              >
-                Select Collection
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: QuizState | null, onEditQuiz: () => void, initialService?: string }) => {
+const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, onEditQuiz: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    service: initialService || ''
+    service: ''
   });
-
-  useEffect(() => {
-    if (initialService) {
-      setFormData(prev => ({ ...prev, service: initialService }));
-    }
-  }, [initialService]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -656,8 +464,8 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
             <Check className="w-10 h-10" />
           </div>
           <h2 className="font-serif text-4xl text-ink">Thank you!</h2>
-          <p className="text-ink/60">I've received your inquiry. Expect a personalized response within 24 hours to schedule our discovery call.</p>
-          <button onClick={() => window.location.reload()} className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold">Back to Home</button>
+          <p className="text-ink/70">I've received your inquiry. Expect a personalized response within 24 hours to schedule our discovery call.</p>
+          <button onClick={() => window.location.reload()} className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold transition-colors">Back to Home</button>
         </motion.div>
       </section>
     );
@@ -671,13 +479,14 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
           <p className="text-accent uppercase tracking-[0.3em] text-[10px] font-bold">Secure your date for 2025/2026</p>
         </div>
 
+        {/* Discovery Profile Summary (High Contrast Update) */}
         {quizState && (
-          <div className="mb-16 p-8 rounded-3xl border border-ink/5 bg-soft/60 space-y-6 card-shadow">
+          <div className="mb-16 p-8 rounded-3xl border border-ink/10 bg-soft space-y-6 card-shadow">
             <div className="flex items-center justify-between">
               <h3 className="text-[10px] uppercase tracking-widest text-accent font-bold">Your Discovery Profile</h3>
               <button
                 onClick={onEditQuiz}
-                className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold"
+                className="text-[10px] uppercase tracking-widest underline text-accent hover:text-ink font-bold transition-colors"
               >
                 Edit Style
               </button>
@@ -688,9 +497,9 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
                 { label: quizState.path === 'branding' ? 'Vibe' : 'Lighting', value: quizState.path === 'branding' ? (quizState.lighting === 'airy' ? 'Warm' : 'Sleek') : (quizState.lighting === 'airy' ? 'Airy' : 'Moody') },
                 { label: quizState.path === 'branding' ? 'Focus' : 'Pose', value: quizState.path === 'branding' ? (quizState.poses === 'candid' ? 'Social' : 'Website') : (quizState.poses === 'classic' ? 'Classic' : 'Candid') }
               ].map((chip, i) => (
-                <div key={i} className="px-4 py-2 rounded-full border border-ink/10 bg-paper flex items-center gap-3">
-                  <span className="text-[9px] uppercase tracking-tighter text-accent font-bold">{chip.label}</span>
-                  <span className="text-xs font-medium text-ink">{chip.value}</span>
+                <div key={i} className="px-5 py-2.5 rounded-full border border-ink/15 bg-paper flex items-center gap-3 shadow-sm">
+                  <span className="text-[10px] uppercase tracking-widest text-accent font-bold">{chip.label}</span>
+                  <span className="text-xs font-bold text-ink">{chip.value}</span>
                 </div>
               ))}
             </div>
@@ -715,15 +524,15 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
                   type="button"
                   onClick={() => setFormData({ ...formData, service: service.id })}
                   className={`p-6 rounded-2xl border text-left transition-all card-shadow ${formData.service === service.id
-                    ? 'border-ink bg-ink text-paper'
-                    : 'border-ink/5 bg-white hover:border-ink/20'
+                      ? 'border-ink bg-ink text-paper'
+                      : 'border-ink/10 bg-white hover:border-ink/30'
                     }`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <h4 className="font-serif text-lg leading-tight">{service.id}</h4>
                     <span className={`text-[10px] font-bold uppercase tracking-widest ${formData.service === service.id ? 'text-accent' : 'text-accent'}`}>{service.price}</span>
                   </div>
-                  <p className={`text-[10px] leading-relaxed uppercase tracking-wider ${formData.service === service.id ? 'text-paper/60' : 'text-ink/60'}`}>{service.desc}</p>
+                  <p className={`text-[10px] leading-relaxed uppercase tracking-wider ${formData.service === service.id ? 'text-paper/80' : 'text-ink/60'}`}>{service.desc}</p>
                 </button>
               ))}
             </div>
@@ -732,16 +541,16 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Full Name</label>
-              <input required type="text" className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors text-ink" placeholder="Your name" />
+              <input required type="text" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Your name" />
             </div>
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Email Address</label>
-              <input required type="email" className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors text-ink" placeholder="hello@example.com" />
+              <input required type="email" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="hello@example.com" />
             </div>
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">What is the occasion?</label>
-              <select required className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink">
+              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Occasion</option>
                 <option className="bg-paper">Personal Milestone</option>
                 <option className="bg-paper">Business Branding</option>
@@ -751,7 +560,7 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
             </div>
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Who will be in the photos?</label>
-              <select required className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink">
+              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Attendees</option>
                 <option className="bg-paper">Just Me</option>
                 <option className="bg-paper">Couple</option>
@@ -762,7 +571,7 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type</label>
-              <select required className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink">
+              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Location</option>
                 <option className="bg-paper">Natural / Outdoor</option>
                 <option className="bg-paper">Studio / Minimal</option>
@@ -777,7 +586,7 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
             <textarea
               rows={4}
               defaultValue={quizState?.customMessage || ''}
-              className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors resize-none text-ink"
+              className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors resize-none text-ink font-medium"
               placeholder="Tell me more about your vision..."
             />
           </div>
@@ -785,11 +594,11 @@ const InquiryForm = ({ quizState, onEditQuiz, initialService }: { quizState: Qui
           <div className="flex flex-col md:flex-row items-end gap-8 pt-8">
             <div className="flex-1 space-y-2 w-full">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Do you have a moodboard or inspiration link?</label>
-              <input type="url" className="w-full bg-transparent border-b border-ink/20 py-3 focus:border-ink outline-none transition-colors text-ink" placeholder="Pinterest or Instagram link" />
+              <input type="url" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Pinterest or Instagram link" />
             </div>
             <div className="relative">
               <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
-              <button type="button" className="flex items-center gap-3 px-6 py-4 border border-ink/10 rounded-xl hover:bg-soft transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap text-ink font-bold">
+              <button type="button" className="flex items-center gap-3 px-6 py-4 border border-ink/20 rounded-xl hover:bg-soft transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap text-ink font-bold">
                 <Plus className="w-4 h-4" />
                 Upload File
               </button>
@@ -818,11 +627,11 @@ const Footer = () => (
           </div>
           <span className="font-serif text-2xl tracking-[0.2em] uppercase text-ink">Ontario Photo Co.</span>
         </div>
-        <p className="text-lg text-ink/60 font-light leading-relaxed max-w-sm serif italic">
+        <p className="text-lg text-ink/70 font-light leading-relaxed max-w-sm serif italic">
           Capturing the modern visionaries and authentic storytellers of Ontario. Based in Toronto, traveling worldwide.
         </p>
         <div className="flex gap-6">
-          <a href="#" className="w-10 h-10 rounded-full border border-ink/10 flex items-center justify-center text-ink hover:bg-ink hover:text-paper transition-all">
+          <a href="#" className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-paper transition-all">
             <Instagram className="w-4 h-4" />
           </a>
         </div>
@@ -830,17 +639,17 @@ const Footer = () => (
 
       <div className="space-y-6">
         <h4 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Navigation</h4>
-        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/70 font-bold">
-          <li><a href="#" className="hover:text-ink transition-colors">Portfolio</a></li>
-          <li><a href="#" className="hover:text-ink transition-colors">Experience</a></li>
-          <li><a href="#" className="hover:text-ink transition-colors">Pricing</a></li>
-          <li><a href="#" className="hover:text-ink transition-colors">Journal</a></li>
+        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/80 font-bold">
+          <li><a href="#" className="hover:text-accent transition-colors">Portfolio</a></li>
+          <li><a href="#" className="hover:text-accent transition-colors">Experience</a></li>
+          <li><a href="#" className="hover:text-accent transition-colors">Pricing</a></li>
+          <li><a href="#" className="hover:text-accent transition-colors">Journal</a></li>
         </ul>
       </div>
 
       <div className="space-y-6">
         <h4 className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Contact</h4>
-        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/70 font-bold">
+        <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] text-ink/80 font-bold">
           <li>hello@ontariophoto.co</li>
           <li>Toronto, Ontario</li>
           <li>Kawartha Lakes, ON</li>
@@ -848,8 +657,8 @@ const Footer = () => (
       </div>
     </div>
     <div className="max-w-7xl mx-auto mt-32 pt-12 border-t border-ink/5 flex flex-col md:flex-row justify-between items-center gap-6">
-      <p className="text-[9px] uppercase tracking-[0.3em] text-ink/40 font-bold">© 2026 Ontario Photo Co. All rights reserved.</p>
-      <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-ink/40 font-bold">
+      <p className="text-[9px] uppercase tracking-[0.3em] text-ink/50 font-bold">© 2026 Ontario Photo Co. All rights reserved.</p>
+      <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-ink/50 font-bold">
         <a href="#" className="hover:text-ink transition-colors">Privacy Policy</a>
         <a href="#" className="hover:text-ink transition-colors">Terms of Service</a>
       </div>
@@ -874,7 +683,7 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
           <h2 className="font-serif text-6xl md:text-7xl leading-[0.9] text-ink tracking-tight">
             Capturing the <br /><span className="italic font-light">Unspoken</span> Narrative.
           </h2>
-          <div className="space-y-8 text-xl text-ink/60 font-light leading-relaxed serif italic">
+          <div className="space-y-8 text-xl text-ink/70 font-light leading-relaxed serif italic">
             <p>
               In a world of filtered perfection, I seek the raw, the real, and the refined. Whether it's the quiet confidence of a CEO in Toronto's core or the soft laughter of a family in the Muskoka pines, my lens is focused on the truth of the moment.
             </p>
@@ -918,18 +727,18 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200" alt="Portrait" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
+            <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Portrait Path</p>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/90 font-bold">Portrait Path</p>
                 <h3 className="font-serif text-4xl italic text-paper">The Soulful Storyteller</h3>
               </div>
             </div>
           </div>
           <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Branding" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
+            <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 font-bold">Branding Path</p>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/90 font-bold">Branding Path</p>
                 <h3 className="font-serif text-3xl italic text-paper">The Modern Visionary</h3>
               </div>
             </div>
@@ -958,11 +767,11 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-8 p-12 rounded-[40px] border border-ink/5 bg-soft/50"
+              className="space-y-8 p-12 rounded-[40px] border border-ink/10 bg-soft/50"
             >
-              <span className="font-serif text-6xl italic text-accent opacity-30">{item.step}</span>
+              <span className="font-serif text-6xl italic text-accent opacity-40">{item.step}</span>
               <h3 className="text-2xl font-serif text-ink">{item.title}</h3>
-              <p className="text-ink/60 font-light leading-relaxed serif italic">{item.desc}</p>
+              <p className="text-ink/70 font-light leading-relaxed serif italic">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -976,15 +785,15 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
           <p className="text-accent uppercase tracking-[0.5em] text-[10px] font-bold">Collections starting at $500</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+          <div className="p-16 rounded-[48px] border border-ink/10 bg-paper space-y-8 card-shadow">
             <h3 className="font-serif text-4xl italic text-ink">Portrait Sessions</h3>
-            <p className="text-ink/60 font-light leading-relaxed serif italic">Capturing personal milestones, family legacies, and individual stories across Ontario.</p>
+            <p className="text-ink/70 font-light leading-relaxed serif italic">Capturing personal milestones, family legacies, and individual stories across Ontario.</p>
             <p className="text-3xl font-serif text-ink">Starting at $500</p>
             <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
           </div>
-          <div className="p-16 rounded-[48px] border border-ink/5 bg-paper space-y-8 card-shadow">
+          <div className="p-16 rounded-[48px] border border-ink/10 bg-paper space-y-8 card-shadow">
             <h3 className="font-serif text-4xl italic text-ink">Branding & Commercial</h3>
-            <p className="text-ink/60 font-light leading-relaxed serif italic">Elevating professional identities for modern visionaries and creative entrepreneurs.</p>
+            <p className="text-ink/70 font-light leading-relaxed serif italic">Elevating professional identities for modern visionaries and creative entrepreneurs.</p>
             <p className="text-3xl font-serif text-ink">Starting at $950</p>
             <button onClick={onStartQuiz} className="text-[10px] uppercase tracking-[0.3em] underline text-accent hover:text-ink font-bold transition-colors">View Details</button>
           </div>
@@ -1033,19 +842,13 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
 );
 
 export default function App() {
-  const [view, setView] = useState<'hero' | 'quiz' | 'results' | 'booking'>('hero');
+  const [view, setView] = useState<'hero' | 'quiz' | 'booking'>('hero');
   const [quizState, setQuizState] = useState<QuizState | null>(null);
-  const [selectedService, setSelectedService] = useState<string>('');
 
   const handleStartQuiz = () => setView('quiz');
 
   const handleQuizComplete = (state: QuizState) => {
     setQuizState(state);
-    setView('results');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBook = () => {
     setView('booking');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1062,19 +865,10 @@ export default function App() {
 
         {view === 'quiz' && <Quiz onComplete={handleQuizComplete} />}
 
-        {view === 'results' && quizState && (
-          <Results
-            quizState={quizState}
-            onBook={handleBook}
-            onSelectPackage={(pkg) => setSelectedService(pkg)}
-          />
-        )}
-
         {view === 'booking' && (
           <InquiryForm
             quizState={quizState}
             onEditQuiz={() => setView('quiz')}
-            initialService={selectedService}
           />
         )}
       </main>
@@ -1082,4 +876,4 @@ export default function App() {
       <Footer />
     </div>
   );
-} 
+}
