@@ -205,7 +205,7 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
             </motion.div>
           )}
 
-          {/* BRANDING PATH QUIZ */}
+          {/* BRANDING PATH QUIZ - SUE BRYCE OPTIMIZED */}
           {state.step === 2 && state.path === 'branding' && (
             <motion.div
               key="step2-branding"
@@ -215,12 +215,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">How would you describe your <br /><span className="italic font-light">brand's personality?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">What is the core energy of <br /><span className="italic font-light">your personal brand?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'airy', label: 'Warm & Approachable', desc: 'Perfect for coaches, wellness, and creatives.', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800' },
-                  { id: 'moody', label: 'Sleek & Editorial', desc: 'Perfect for realtors, executives, and premium services.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' }
+                  { id: 'airy', label: 'Connection & Empathy', desc: 'Warm, approachable, and deeply authentic to my audience.', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800' },
+                  { id: 'moody', label: 'Authority & Expertise', desc: 'Polished, confident, industry-leading, and high-end.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -248,12 +248,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">Where will you use these <br /><span className="italic font-light">photos the most?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">Where are you currently <br /><span className="italic font-light">struggling with your visual identity?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'candid', label: 'Social Media & Content', desc: 'Authentic behind-the-scenes and daily stories.', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800' },
-                  { id: 'classic', label: 'Website & Press Features', desc: 'High-end landing pages and PR media kits.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800' }
+                  { id: 'candid', label: 'Feeling Invisible', desc: "My current visuals don't reflect the high quality of my work.", img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800' },
+                  { id: 'classic', label: 'Lacking Consistency', desc: 'I need a cohesive, premium look across my entire marketing presence.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -281,12 +281,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">What is your ideal <br /><span className="italic font-light">shoot setting?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">What is your ideal <br /><span className="italic font-light">shoot environment?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   { id: 'airy', label: 'Bright, Modern Studio', desc: 'Clean lines, controlled light, and a minimalist aesthetic.', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'moody', label: 'In-Action & On-Location', desc: 'Your office, a stylish hotel, or an urban backdrop.', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'moody', label: 'Lifestyle & On-Location', desc: 'A chic hotel, modern cafe, or your beautiful workspace.', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -315,12 +315,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">How do you want to <br /><span className="italic font-light">feel in your portraits?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">Be honest—how do you feel about <br /><span className="italic font-light">being in front of the camera?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'airy', label: 'Fierce & Empowered', desc: 'Bold, confident, and unapologetically you.', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800' },
-                  { id: 'moody', label: 'Timeless & Elegant', desc: 'Classic, graceful, and beautifully sophisticated.', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'airy', label: 'I usually hide from it', desc: 'I feel awkward and prefer to be the one taking the photos.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800' },
+                  { id: 'moody', label: 'I am ready to embrace it', desc: 'It is my time to step into the light and celebrate my journey.', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -348,12 +348,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">Who are we <br /><span className="italic font-light">celebrating today?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">Whose legacy are we <br /><span className="italic font-light">capturing today?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'classic', label: 'Celebrating Myself', desc: 'A day of pampering just for you to reconnect with your beauty.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'candid', label: 'Generations & Family', desc: 'Capturing the legacy and connection with those you love most.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'classic', label: 'A Celebration of Me', desc: 'A day of luxury and pampering just to reconnect with myself.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600' },
+                  { id: 'candid', label: 'Generations & Family', desc: 'Capturing the beautiful connection with those I love most.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -381,12 +381,12 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
               className="space-y-12"
             >
               <div className="space-y-4">
-                <h2 className="font-serif text-4xl md:text-5xl text-ink">What is your dream <br /><span className="italic font-light">wardrobe style?</span></h2>
+                <h2 className="font-serif text-4xl md:text-5xl text-ink">How do you want to <br /><span className="italic font-light">be photographed?</span></h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { id: 'moody', label: 'Glamour & Couture', desc: 'Tulle, gowns, dark laces, and show-stopping elegance.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600' },
-                  { id: 'airy', label: 'Soft & Intimate', desc: 'Silks, sheer fabrics, casual knits, and beautiful simplicity.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600' }
+                  { id: 'moody', label: 'Fierce & Empowered', desc: 'Bold, confident, and unapologetically standing in my power.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600' },
+                  { id: 'airy', label: 'Timeless & Elegant', desc: 'Classic, graceful, softly lit, and beautifully sophisticated.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600' }
                 ].map((opt) => (
                   <button
                     key={opt.id}
@@ -531,8 +531,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
             <div className="flex flex-wrap gap-3">
               {[
                 { label: 'Path', value: quizState.path === 'branding' ? 'Branding' : 'Legacy Portrait' },
-                { label: quizState.path === 'branding' ? 'Vibe' : 'Feeling', value: quizState.path === 'branding' ? (quizState.lighting === 'airy' ? 'Warm' : 'Sleek') : (quizState.lighting === 'airy' ? 'Fierce' : 'Elegant') },
-                { label: quizState.path === 'branding' ? 'Focus' : 'Focus', value: quizState.path === 'branding' ? (quizState.poses === 'candid' ? 'Social Content' : 'Website Assets') : (quizState.poses === 'classic' ? 'Self Celebration' : 'Generations') }
+                { label: quizState.path === 'branding' ? 'Energy' : 'Comfort', value: quizState.path === 'branding' ? (quizState.lighting === 'airy' ? 'Empathy' : 'Authority') : (quizState.lighting === 'airy' ? 'Hides from Camera' : 'Ready to Embrace') },
+                { label: quizState.path === 'branding' ? 'Challenge' : 'Legacy', value: quizState.path === 'branding' ? (quizState.poses === 'candid' ? 'Invisibility' : 'Inconsistency') : (quizState.poses === 'classic' ? 'Self Celebration' : 'Family Generations') }
               ].map((chip, i) => (
                 <div key={i} className="px-5 py-2.5 rounded-full border border-ink/15 bg-paper flex items-center gap-3 shadow-sm">
                   <span className="text-[10px] uppercase tracking-widest text-accent font-bold">{chip.label}</span>
