@@ -176,11 +176,11 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col items-center justify-end p-16 text-center space-y-6">
-                    <h3 className="font-serif text-4xl italic text-paper">Elevating my professional brand</h3>
-                    <div className="w-12 h-px bg-paper/50 group-hover:w-24 transition-all duration-500" />
-                    <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 group-hover:text-paper transition-colors font-bold">Select Path</p>
+                    <h3 className="font-serif text-4xl italic text-white">Elevating my professional brand</h3>
+                    <div className="w-12 h-px bg-white/50 group-hover:w-24 transition-all duration-500" />
+                    <p className="text-[9px] uppercase tracking-[0.4em] text-white/80 group-hover:text-white transition-colors font-bold">Select Path</p>
                   </div>
                 </button>
 
@@ -194,11 +194,11 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col items-center justify-end p-16 text-center space-y-6">
-                    <h3 className="font-serif text-4xl italic text-paper">Capturing a personal milestone</h3>
-                    <div className="w-12 h-px bg-paper/50 group-hover:w-24 transition-all duration-500" />
-                    <p className="text-[9px] uppercase tracking-[0.4em] text-paper/80 group-hover:text-paper transition-colors font-bold">Select Path</p>
+                    <h3 className="font-serif text-4xl italic text-white">Capturing a personal milestone</h3>
+                    <div className="w-12 h-px bg-white/50 group-hover:w-24 transition-all duration-500" />
+                    <p className="text-[9px] uppercase tracking-[0.4em] text-white/80 group-hover:text-white transition-colors font-bold">Select Path</p>
                   </div>
                 </button>
               </div>
@@ -228,10 +228,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -261,10 +261,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -294,10 +294,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -328,10 +328,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -361,10 +361,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -394,10 +394,10 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
                     className="group relative aspect-[16/9] rounded-2xl overflow-hidden border border-ink/10 text-left card-shadow"
                   >
                     <img src={opt.img} alt={opt.label} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif italic mb-2 text-paper">{opt.label}</h3>
-                      <p className="text-sm text-paper/90">{opt.desc}</p>
+                      <h3 className="text-2xl font-serif italic mb-2 text-white">{opt.label}</h3>
+                      <p className="text-sm text-white/90">{opt.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -784,19 +784,19 @@ const Home = ({ onStartQuiz }: { onStartQuiz: () => void }) => (
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-8 aspect-video rounded-[48px] overflow-hidden relative group card-shadow">
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200" alt="Portrait" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-16">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/90 font-bold">Portrait Path</p>
-                <h3 className="font-serif text-4xl italic text-paper">The Soulful Storyteller</h3>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Portrait Path</p>
+                <h3 className="font-serif text-4xl italic text-white">The Soulful Storyteller</h3>
               </div>
             </div>
           </div>
           <div className="md:col-span-4 aspect-square md:aspect-auto rounded-[48px] overflow-hidden relative group card-shadow">
             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Branding" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
               <div className="text-left space-y-4">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-paper/90 font-bold">Branding Path</p>
-                <h3 className="font-serif text-3xl italic text-paper">The Modern Visionary</h3>
+                <p className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-bold">Branding Path</p>
+                <h3 className="font-serif text-3xl italic text-white">The Modern Visionary</h3>
               </div>
             </div>
           </div>
