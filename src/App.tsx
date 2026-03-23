@@ -443,12 +443,23 @@ const Quiz = ({ onComplete }: { onComplete: (state: QuizState) => void }) => {
 
 const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, onEditQuiz: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fileName, setFileName] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     service: ''
   });
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    } else {
+      setFileName(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const form = e.currentTarget;
     const data = new FormData(form);
 
@@ -468,6 +479,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
       }
     } catch (error) {
       console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -628,19 +641,21 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
               <input name="moodboardLink" type="url" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Pinterest or Instagram link" />
             </div>
             <div className="relative">
-              <input name="attachment" type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
-              <button type="button" className="flex items-center gap-3 px-6 py-4 border border-ink/20 rounded-xl hover:bg-soft transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap text-ink font-bold">
-                <Plus className="w-4 h-4" />
-                Upload File
+              {/* Added onChange handler to track the file name */}
+              <input onChange={handleFileChange} name="attachment" type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
+              <button type="button" className={`flex items-center gap-3 px-6 py-4 border rounded-xl transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap font-bold ${fileName ? 'border-accent bg-accent/5 text-accent' : 'border-ink/20 hover:bg-soft text-ink'}`}>
+                {fileName ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                {fileName ? fileName : 'Upload File'}
               </button>
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-8 bg-ink text-paper rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:scale-[1.01] transition-transform shadow-xl shadow-ink/10"
+            disabled={isSubmitting}
+            className={`w-full py-8 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all shadow-xl ${isSubmitting ? 'bg-ink/50 text-paper/80 cursor-not-allowed shadow-none' : 'bg-ink text-paper hover:scale-[1.01] shadow-ink/10'}`}
           >
-            Send Inquiry
+            {isSubmitting ? 'Sending Inquiry...' : 'Send Inquiry'}
           </button>
         </form>
       </div>
