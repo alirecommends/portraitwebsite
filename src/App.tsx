@@ -447,9 +447,28 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
     service: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mzdjnrqy", {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+    }
   };
 
   if (submitted) {
@@ -507,6 +526,17 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
         )}
 
         <form onSubmit={handleSubmit} className="space-y-16">
+          {/* Hidden inputs to capture React state data in Formspree */}
+          <input type="hidden" name="selectedService" value={formData.service} />
+          {quizState && (
+            <>
+              <input type="hidden" name="quizPath" value={quizState.path || ''} />
+              <input type="hidden" name="quizLighting" value={quizState.lighting || ''} />
+              <input type="hidden" name="quizPoses" value={quizState.poses || ''} />
+              <input type="hidden" name="quizPalette" value={quizState.palette || ''} />
+            </>
+          )}
+
           <div className="space-y-6">
             <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Which service are you interested in?</label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -541,16 +571,16 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Full Name</label>
-              <input required type="text" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Your name" />
+              <input required name="fullName" type="text" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Your name" />
             </div>
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Email Address</label>
-              <input required type="email" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="hello@example.com" />
+              <input required name="email" type="email" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="hello@example.com" />
             </div>
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">What is the occasion?</label>
-              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+              <select required name="occasion" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Occasion</option>
                 <option className="bg-paper">Personal Milestone</option>
                 <option className="bg-paper">Business Branding</option>
@@ -560,7 +590,7 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
             </div>
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Who will be in the photos?</label>
-              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+              <select required name="attendees" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Attendees</option>
                 <option className="bg-paper">Just Me</option>
                 <option className="bg-paper">Couple</option>
@@ -571,7 +601,7 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Preferred Location Type</label>
-              <select required className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
+              <select required name="locationType" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors appearance-none cursor-pointer text-ink font-medium">
                 <option className="bg-paper" value="">Select Location</option>
                 <option className="bg-paper">Natural / Outdoor</option>
                 <option className="bg-paper">Studio / Minimal</option>
@@ -584,6 +614,7 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           <div className="space-y-2">
             <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Any special requests or details to share?</label>
             <textarea
+              name="specialRequests"
               rows={4}
               defaultValue={quizState?.customMessage || ''}
               className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors resize-none text-ink font-medium"
@@ -594,10 +625,10 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
           <div className="flex flex-col md:flex-row items-end gap-8 pt-8">
             <div className="flex-1 space-y-2 w-full">
               <label className="text-[10px] uppercase tracking-widest text-accent font-bold">Do you have a moodboard or inspiration link?</label>
-              <input type="url" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Pinterest or Instagram link" />
+              <input name="moodboardLink" type="url" className="w-full bg-transparent border-b border-ink/30 py-3 focus:border-ink outline-none transition-colors text-ink font-medium" placeholder="Pinterest or Instagram link" />
             </div>
             <div className="relative">
-              <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
+              <input name="attachment" type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
               <button type="button" className="flex items-center gap-3 px-6 py-4 border border-ink/20 rounded-xl hover:bg-soft transition-colors text-[10px] uppercase tracking-widest whitespace-nowrap text-ink font-bold">
                 <Plus className="w-4 h-4" />
                 Upload File
