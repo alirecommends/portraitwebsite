@@ -514,9 +514,9 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
                 { id: 'Brand Authority', price: '$1,850', desc: 'Half-day shoot, HMUA included, and full commercial folio.' },
                 { id: 'The Refresh', price: '$500', desc: 'Quick 30-min headshot update.' }
               ] : [
-                { id: 'The Portrait Session', price: '$390 Session Fee', desc: 'Consultation, HMUA, and fully guided photoshoot.' },
-                { id: 'The Legacy Folio', price: '$1,200+', desc: 'Session fee + beautiful handcrafted folio box of matted prints.' },
-                { id: 'Generations', price: '$490 Session Fee', desc: 'Bring your mother, sister, or daughter. HMUA for two.' }
+                { id: 'The Signature Portrait', price: '$390 Session Fee', desc: 'Consultation, HMUA for one, and fully guided photoshoot.' },
+                { id: 'Generations', price: '$490 Session Fee', desc: 'Bring your mother, sister, or daughter. HMUA for two.' },
+                { id: 'The Editorial Session', price: '$590 Session Fee', desc: 'Extended 3-hour shoot, advanced styling, and multiple looks.' }
               ]).map((service) => (
                 <button
                   key={service.id}
