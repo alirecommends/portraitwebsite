@@ -4,30 +4,34 @@
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", serif;
-  /* Elevated Feminine Palette */
-  --color-paper: #FDFBF7;
-  --color-ink: #2C2623;
-  /* Deepened for much punchier text contrast */
-  --color-accent: #8E6B62;
-  /* Richer, darker dusty rose for readable accents */
-  --color-soft: #F9F3F1;
+
+  /* Clear, Soft, & Readable Palette */
+  --color-paper: #FCFAF8;
+  /* Brighter cream for clear contrast */
+  --color-ink: #2A2422;
+  /* Softened charcoal; highly readable but not harsh */
+  --color-accent: #8A655A;
+  /* Soft, warm mauve/taupe - gentle but legible */
+  --color-soft: #F5EFEB;
+  /* Very gentle warm blush/sand background */
 }
 
 @layer base {
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-paper text-ink font-sans antialiased selection:bg-accent/20 selection:text-ink;
   }
 }
 
+/* Beautiful soft glass effect for form fields and overlays */
 .glass {
-  @apply bg-white/40 backdrop-blur-md border border-black/5;
+  @apply bg-white/60 backdrop-blur-xl border border-white/50 shadow-sm;
 }
 
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-br from-ink to-accent;
 }
 
-/* Using standard CSS to prevent code formatters from breaking Tailwind's compiler */
+/* Ultra-soft, diffused shadow for rounded elements (no harsh edges) */
 .card-shadow {
-  box-shadow: 0 4px 30px rgba(74, 64, 58, 0.06);
+  box-shadow: 0 12px 40px -12px rgba(138, 101, 90, 0.12), 0 0 20px rgba(0, 0, 0, 0.02);
 }
