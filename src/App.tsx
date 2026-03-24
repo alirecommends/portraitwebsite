@@ -526,8 +526,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
                     if (showErrors) setShowErrors(false);
                   }}
                   className={`p-8 rounded-[2rem] border text-left transition-all ${formData.service === service.id
-                      ? 'border-ink bg-ink text-paper shadow-lg shadow-ink/20 scale-[1.02]'
-                      : 'border-white bg-white hover:border-accent/30 hover:shadow-md shadow-sm'
+                    ? 'border-ink bg-ink text-paper shadow-lg shadow-ink/20 scale-[1.02]'
+                    : 'border-white bg-white hover:border-accent/30 hover:shadow-md shadow-sm'
                     }`}
                 >
                   <h4 className="font-serif text-xl leading-tight mb-3">{service.id}</h4>
@@ -553,15 +553,30 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
               <div className="relative">
                 <select required name="occasion" defaultValue="" className={`appearance-none ${inputBaseStyle} ${inputErrorStyle}`}>
                   <option value="" disabled hidden>Select Occasion</option>
-                  <option value="Celebrating Myself">Celebrating Myself</option>
-                  <option value="Business Milestone">Business Milestone</option>
+                  <option value="Personal Milestone / Birthday">Personal Milestone / Birthday</option>
+                  <option value="Business Rebranding">Business Rebranding</option>
                   <option value="Maternity / Motherhood">Maternity / Motherhood</option>
-                  <option value="Generations">Generations</option>
+                  <option value="Family Legacy">Family Legacy</option>
                 </select>
                 <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40 pointer-events-none" />
               </div>
             </div>
+
             <div className="space-y-3">
+              <label className="text-[10px] uppercase tracking-widest text-ink ml-2 font-bold">Who will be in the photos? *</label>
+              <div className="relative">
+                <select required name="attendees" defaultValue="" className={`appearance-none ${inputBaseStyle} ${inputErrorStyle}`}>
+                  <option value="" disabled hidden>Select Headcount</option>
+                  <option value="Just Me">Just Me</option>
+                  <option value="Two People (Couple/Duo)">Two People (Couple/Duo)</option>
+                  <option value="Small Family (3-4)">Small Family (3-4)</option>
+                  <option value="Large Group (5+)">Large Group (5+)</option>
+                </select>
+                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40 pointer-events-none" />
+              </div>
+            </div>
+
+            <div className="space-y-3 md:col-span-2">
               <label className="text-[10px] uppercase tracking-widest text-ink ml-2 font-bold">Phone Number (Optional)</label>
               <input name="phone" type="tel" className={inputBaseStyle} placeholder="(555) 555-5555" />
             </div>
