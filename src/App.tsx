@@ -531,7 +531,8 @@ const InquiryForm = ({ quizState, onEditQuiz }: { quizState: QuizState | null, o
                     }`}
                 >
                   <h4 className="font-serif text-xl leading-tight mb-3">{service.id}</h4>
-                  <div className={`text-[10px] font-bold uppercase tracking-widest mb-4 ${formData.service === service.id ? 'text-accent/90' : 'text-accent'}`}>{service.price}</div>
+                  {/* FIX: Improved active text color for accessibility contrast */}
+                  <div className={`text-[10px] font-bold uppercase tracking-widest mb-4 ${formData.service === service.id ? 'text-paper/90' : 'text-accent'}`}>{service.price}</div>
                   <p className={`text-[11px] leading-relaxed tracking-wider ${formData.service === service.id ? 'text-paper/80' : 'text-ink/60'}`}>{service.desc}</p>
                 </button>
               ))}
